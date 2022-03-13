@@ -54,7 +54,7 @@ public class GameLanguage
                          Close = "Close ({0})",
                          GameMaster = "GameMaster",
 
-                         PatchErr = "Could not get Patch Information",
+                         PatchErr = "无法获取修补程序信息",
                          LastOnline = "Last Online",
 
                          Gold = "Gold",
@@ -174,12 +174,12 @@ public class GameLanguage
                          MentorEnterName = "Please enter the name of the person you would like to be your Mentor.",
                          RestedBuff = "Rested{0}Increases Exp Rate by {1}%{2}",
 
-                         ItemTypeWeapon = "Weapon",
-                         ItemTypeArmour = "Armour",
-                         ItemTypeHelmet = "Helmet",
-                         ItemTypeNecklace = "Necklace",
-                         ItemTypeBracelet = "Bracelet",
-                         ItemTypeRing = "Ring",
+                         ItemTypeWeapon = "武器",
+                         ItemTypeArmour = "护甲",
+                         ItemTypeHelmet = "头盔",
+                         ItemTypeNecklace = "项链",
+                         ItemTypeBracelet = "手镯",
+                         ItemTypeRing = "戒指",
                          ItemTypeAmulet = "Amulet",
                          ItemTypeBelt = "Belt",
                          ItemTypeBoots = "Boots",

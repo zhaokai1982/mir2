@@ -48,7 +48,7 @@ namespace LibraryViewer
 
             if (CurrentVersion < 2)
             {
-                MessageBox.Show("Wrong version, expecting lib version: " + LibVersion.ToString() + " found version: " + CurrentVersion.ToString() + ".", "Failed to open", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("版本错误，应为lib版本: " + LibVersion.ToString() + " 找到版本: " + CurrentVersion.ToString() + ".", "未能打开", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 return;
             }
 

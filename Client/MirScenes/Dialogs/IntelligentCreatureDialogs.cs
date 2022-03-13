@@ -25,14 +25,14 @@ namespace Client.MirScenes.Dialogs
         public int SelectedCreatureSlot = -1;
         public MirControl HoverLabelParent = null;
 
-        private readonly Regex CreatureNameReg = new Regex(@"^[A-Za-z0-9]{" + Globals.MinCharacterNameLength + "," + Globals.MaxCharacterNameLength + "}$");
+        private readonly Regex CreatureNameReg = new Regex(@"^[A-Za-z0-9-\u0391-\uFFE5]{" + Globals.MinCharacterNameLength + "," + Globals.MaxCharacterNameLength + "}$");
 
         private MirAnimatedControl CreatureImage;
         public long SwitchAnimTime;
         public bool AnimSwitched = false;
         public bool AnimNeedSwitch = false;
 
-        private const long blackstoneProduceTime = 10800;//3 hours in seconds
+        private const long blackstoneProduceTime = 10800;//3 以秒计的小时
 
         private bool showing = false;
 
@@ -45,7 +45,7 @@ namespace Client.MirScenes.Dialogs
             Location = Center;
             BeforeDraw += IntelligentCreatureDialog_BeforeDraw;
 
-            #region CreatureButtons
+            #region 宠物页面
             CloseButton = new MirButton
             {
                 HoverIndex = 361,
@@ -94,7 +94,7 @@ namespace Client.MirScenes.Dialogs
             };
             SummonButton.Click += ButtonClick;
 
-            DismissButton = new MirButton//Dismiss the summoned pet
+            DismissButton = new MirButton//解散被召唤的宠物
             {
                 HoverIndex = 581,
                 Index = 580,
@@ -106,7 +106,7 @@ namespace Client.MirScenes.Dialogs
             };
             DismissButton.Click += ButtonClick;
 
-            ReleaseButton = new MirButton//Removes the selected pet
+            ReleaseButton = new MirButton//移除选定的宠物
             {
                 HoverIndex = 584,
                 Index = 583,
@@ -118,7 +118,7 @@ namespace Client.MirScenes.Dialogs
             };
             ReleaseButton.Click += ButtonClick;
 
-            OptionsMenuButton = new MirButton//Options
+            OptionsMenuButton = new MirButton//可选
             {
                 HoverIndex = 574,
                 Index = 573,
@@ -130,7 +130,7 @@ namespace Client.MirScenes.Dialogs
             };
             OptionsMenuButton.Click += ButtonClick;
 
-            AutomaticModeButton = new MirButton//image is wrongly translated should be "Auto" instaid of "Enable"
+            AutomaticModeButton = new MirButton//图像翻译错误，应为 "Auto" instaid of "Enable"
             {
                 HoverIndex = 611,
                 Index = 610,
@@ -142,7 +142,7 @@ namespace Client.MirScenes.Dialogs
             };
             AutomaticModeButton.Click += ButtonClick;
 
-            SemiAutoModeButton = new MirButton//image is wrongly translated should be "SemiAuto" instaid of "Disable"
+            SemiAutoModeButton = new MirButton//图像翻译错误，应为"SemiAuto" 安装 "Disable"
             {
                 HoverIndex = 614,
                 Index = 613,
@@ -331,7 +331,7 @@ namespace Client.MirScenes.Dialogs
                 DrawFormat = TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter,
                 Size = new Size(166, 21),
                 NotControl = true,
-                Visible = false //FAR made invisible as position was wierd - not sure where it's meant to be displayed
+                Visible = false //它的位置非常隐蔽，不知道该显示在哪里
             };
 
             HoverLabel = new MirLabel
@@ -346,7 +346,7 @@ namespace Client.MirScenes.Dialogs
 
         }
 
-        #region EventHandlers
+        #region 事件处理程序
         private void IntelligentCreatureDialog_BeforeDraw(object sender, EventArgs e)
         {
             RefreshDialog();
@@ -453,18 +453,18 @@ namespace Client.MirScenes.Dialogs
 
             if (sender == CreatureRenameButton)
             {
-                MirInputBox inputBox = new MirInputBox("Please enter a new name for the creature.");
+                MirInputBox inputBox = new MirInputBox("请输入该宠物的新昵称.");
                 inputBox.InputTextBox.Text = GameScene.User.IntelligentCreatures[selectedCreature].CustomName;
                 inputBox.OKButton.Click += (o1, e1) =>
                 {
                     if (!CreatureNameReg.IsMatch(inputBox.InputTextBox.Text))
                     {
-                        MirMessageBox failedMessage = new MirMessageBox(string.Format("Creature name must be between {0} and {1} characters.", Globals.MinCharacterNameLength, Globals.MaxCharacterNameLength), MirMessageBoxButtons.OK);
+                        MirMessageBox failedMessage = new MirMessageBox(string.Format("宠物昵称必须介于{0}和{1}个字符之间.", Globals.MinCharacterNameLength, Globals.MaxCharacterNameLength), MirMessageBoxButtons.OK);
                         failedMessage.Show();
                     }
                     else
                     {
-                        Update();//refresh changes
+                        Update();//刷新更改
                         GameScene.User.IntelligentCreatures[selectedCreature].CustomName = inputBox.InputTextBox.Text;
                         Network.Enqueue(new C.UpdateIntelligentCreature { Creature = GameScene.User.IntelligentCreatures[selectedCreature] });
                         inputBox.Dispose();
@@ -500,16 +500,16 @@ namespace Client.MirScenes.Dialogs
             }
             if (sender == ReleaseButton)
             {
-                MirInputBox verificationBox = new MirInputBox("Please enter the creature's name for verification.");
+                MirInputBox verificationBox = new MirInputBox("请输入该宠物的名称进行验证.");
                 verificationBox.OKButton.Click += (o1, e1) =>
                 {
                     if (String.Compare(verificationBox.InputTextBox.Text, GameScene.User.IntelligentCreatures[selectedCreature].CustomName, StringComparison.OrdinalIgnoreCase) != 0)
                     {
-                        GameScene.Scene.ChatDialog.ReceiveChat("Verification Failed!!", ChatType.System);
+                        GameScene.Scene.ChatDialog.ReceiveChat("验证失败!!", ChatType.System);
                     }
                     else
                     {
-                        //clear all and get new info after server got update
+                        //在服务器得到更新后清除所有并获取新信息
                         for (int i = 0; i < CreatureButtons.Length; i++) CreatureButtons[i].Clear();
                         Hide();
                         Network.Enqueue(new C.UpdateIntelligentCreature { Creature = GameScene.User.IntelligentCreatures[selectedCreature], ReleaseMe = true });
@@ -521,10 +521,10 @@ namespace Client.MirScenes.Dialogs
             }
             if (sender == SemiAutoModeButton)
             {
-                //make sure rules allow Automatic Mode
+                //确保规则允许自动模式
                 if (!GameScene.User.IntelligentCreatures[selectedCreature].CreatureRules.AutoPickupEnabled) return;
 
-                //turn on automatic pickupmode
+                //打开自动拾取模式
                 SemiAutoModeButton.Visible = false;
                 AutomaticModeButton.Visible = true;
                 GameScene.User.IntelligentCreatures[selectedCreature].petMode = IntelligentCreaturePickupMode.Automatic;
@@ -532,10 +532,10 @@ namespace Client.MirScenes.Dialogs
             }
             if (sender == AutomaticModeButton)
             {
-                //make sure rules allow SemiAutomatic Mode
+                //确保规则允许半自动模式
                 if (!GameScene.User.IntelligentCreatures[selectedCreature].CreatureRules.SemiAutoPickupEnabled) return;
 
-                //turn on semiauto pickupmode
+                //打开半自动拾取模式
                 AutomaticModeButton.Visible = false;
                 SemiAutoModeButton.Visible = true;
                 GameScene.User.IntelligentCreatures[selectedCreature].petMode = IntelligentCreaturePickupMode.SemiAutomatic;
@@ -543,21 +543,21 @@ namespace Client.MirScenes.Dialogs
             }
             if (sender == OptionsMenuButton)
             {
-                //show ItemFilter
+                //显示物品拾取过滤
                 if (!GameScene.Scene.IntelligentCreatureOptionsDialog.Visible) GameScene.Scene.IntelligentCreatureOptionsDialog.Show(GameScene.User.IntelligentCreatures[selectedCreature].Filter);
                 if (!GameScene.Scene.IntelligentCreatureOptionsGradeDialog.Visible) GameScene.Scene.IntelligentCreatureOptionsGradeDialog.Show(GameScene.User.IntelligentCreatures[selectedCreature].Filter.PickupGrade);
             }
 
             if (needUpdate)
             {
-                Update();//refresh changes
+                Update();//刷新更改
                 Network.Enqueue(new C.UpdateIntelligentCreature { Creature = GameScene.User.IntelligentCreatures[selectedCreature], SummonMe = needSummon, UnSummonMe = needDismiss, ReleaseMe = needRelease });
             }
         }
 
         #endregion
 
-        #region Process
+        #region 处理
         public void Update()
         {
             if (!Visible) return;
@@ -588,7 +588,7 @@ namespace Client.MirScenes.Dialogs
                 CreatureButtons[i].Visible = true;
                 CreatureButtons[i].Update(GameScene.User.IntelligentCreatures[i], showing);
 
-                //Check what creature is currently summoned if at all
+                //检查当前召唤的宠物（如果有）
                 if (showing && GameScene.User.CreatureSummoned && CreatureButtons[i].PetType == GameScene.User.SummonedCreatureType) SelectedButton = i;
             }
             showing = false;
@@ -643,7 +643,7 @@ namespace Client.MirScenes.Dialogs
                 SemiAutoModeButton.Enabled = true;
                 AutomaticModeButton.Enabled = true;
 
-                //Check what creature is currently summoned
+                //检查当前召唤的宠物
                 if (GameScene.User.CreatureSummoned)
                 {
                     if (GameScene.User.IntelligentCreatures[selectedCreature].PetType == GameScene.User.SummonedCreatureType)
@@ -693,7 +693,7 @@ namespace Client.MirScenes.Dialogs
             }
         }
 
-        public int BeforeAfterDraw()//No idea why.. but without this FullnessForeGround_AfterDraw wont work...
+        public int BeforeAfterDraw()//不知道为什么。。但如果没有这种充分的准备，你的后面计划就行不通了...
         {
             if (FullnessFG.Library == null) return -1;
 
@@ -733,13 +733,13 @@ namespace Client.MirScenes.Dialogs
 
             var rules = GameScene.User.IntelligentCreatures[selectedCreature].CreatureRules;
 
-            var semi = rules.SemiAutoPickupEnabled ? string.Format("{0}x{0} {1}{2}{3}", rules.AutoPickupRange, rules.AutoPickupEnabled ? "auto/" : "", rules.SemiAutoPickupEnabled ? "semi-auto" : "", rules.MousePickupEnabled ? ", " : "") : "";
-            var mouse = rules.SemiAutoPickupEnabled ? string.Format("{0}x{0} mouse", rules.MousePickupRange) : "";
+            var semi = rules.SemiAutoPickupEnabled ? string.Format("拾取范围{0}x{0} {1}{2}{3}", rules.AutoPickupRange, rules.AutoPickupEnabled ? "自动/" : "", rules.SemiAutoPickupEnabled ? "半自动拾取" : "", rules.MousePickupEnabled ? ", " : "") : "";
+            var mouse = rules.SemiAutoPickupEnabled ? string.Format("拾取范围{0}x{0} 手动", rules.MousePickupRange) : "";
 
             CreatureName.Text = GameScene.User.IntelligentCreatures[selectedCreature].CustomName;
-            CreatureInfo.Text = string.Format("Can pickup items ({0}{1}).", semi, mouse);
-            CreatureInfo1.Text = rules.CanProduceBlackStone ? "Can produce BlackStones." : "";
-            CreatureInfo2.Text = rules.CanProduceBlackStone ? "Can produce Pearls, used to buy Creature items." : "";
+            CreatureInfo.Text = string.Format("可拾取物品 ({0}{1}).", semi, mouse);
+            CreatureInfo1.Text = rules.CanProduceBlackStone ? "可出产黑色的石头." : "";
+            CreatureInfo2.Text = rules.CanProduceBlackStone ? "可出产珍珠，用于购买宠物用品." : "";
 
             //Expire
             if (GameScene.User.IntelligentCreatures[selectedCreature].Expire == DateTime.MinValue)

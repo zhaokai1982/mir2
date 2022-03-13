@@ -74,27 +74,27 @@ namespace Server.MirEnvir
 
         private byte FindType(byte[] input)
         {
-            //c# custom map format
+            //c# 自定义地图格式
             if ((input[2] == 0x43) && (input[3] == 0x23))
             {
                 return 100;
             }
-            //wemade mir3 maps have no title they just start with blank bytes
+            //我们制作的mir3地图没有标题，只是以空白字节开头
             if (input[0] == 0)
                 return 5;
-            //shanda mir3 maps start with title: (C) SNDA, MIR3.
+            //盛大MIR3地图开头标题: (C) SNDA, MIR3.
             if ((input[0] == 0x0F) && (input[5] == 0x53) && (input[14] == 0x33))
                 return 6;
 
-            //wemades antihack map (laby maps) title start with: Mir2 AntiHack
+            //韩国娱美德 antihack地图（laby地图）标题以：Mir2 antihack开始
             if ((input[0] == 0x15) && (input[4] == 0x32) && (input[6] == 0x41) && (input[19] == 0x31))
                 return 4;
 
-            //wemades 2010 map format i guess title starts with: Map 2010 Ver 1.0
+            //韩国娱美德 2010地图格式我猜标题以：map 2010 1.0版开始
             if ((input[0] == 0x10) && (input[2] == 0x61) && (input[7] == 0x31) && (input[14] == 0x31))
                 return 1;
 
-            //shanda's 2012 format and one of shandas(wemades) older formats share same header info, only difference is the filesize
+            //盛大的2012格式和盛大（娱美德）的旧格式共享相同的头信息，唯一的区别是文件大小
             if ((input[4] == 0x0F) && (input[18] == 0x0D) && (input[19] == 0x0A))
             {
                 int W = input[0] + (input[1] << 8);
@@ -105,7 +105,7 @@ namespace Server.MirEnvir
                     return 2;
             }
 
-            //3/4 heroes map format (myth/lifcos i guess)
+            //3/4 heroes 地图格式 (我觉得是/myth)
             if ((input[0] == 0x0D) && (input[1] == 0x4C) && (input[7] == 0x20) && (input[11] == 0x6D))
                 return 7;
             return 0;
@@ -398,7 +398,7 @@ namespace Server.MirEnvir
         private void LoadMapCellsV100(byte[] Bytes)
         {
             int offset = 4;
-            if ((Bytes[0] != 1) || (Bytes[1] != 0)) return;//only support version 1 atm
+            if ((Bytes[0] != 1) || (Bytes[1] != 0)) return;//仅支持1版atm
             Width = BitConverter.ToInt16(Bytes, offset);
             offset += 2;
             Height = BitConverter.ToInt16(Bytes, offset);
@@ -510,7 +510,7 @@ namespace Server.MirEnvir
                 MessageQueue.Enqueue(ex);
             }
 
-            MessageQueue.Enqueue("Failed to Load Map: " + Info.FileName);
+            MessageQueue.Enqueue("未能加载地图连接信息: " + Info.FileName);
             return false;
         }
 
@@ -762,13 +762,13 @@ namespace Server.MirEnvir
                     if (respawn.Info.RespawnTicks != 0)
                     {
                         respawn.NextSpawnTick = Envir.RespawnTick.CurrentTickcounter + (ulong)respawn.Info.RespawnTicks;
-                        if (respawn.NextSpawnTick > long.MaxValue)//since nextspawntick is ulong this simple thing allows an easy way of preventing the counter from overflowing
+                        if (respawn.NextSpawnTick > long.MaxValue)//由于nextspawntick是ulong，这个简单的东西可以很容易地防止计数器溢出
                             respawn.NextSpawnTick -= long.MaxValue;
                     }
                 }
                 else
                 {
-                    respawn.RespawnTime = Envir.Time + 1 * Settings.Minute; // each time it fails to spawn, give it a 1 minute cooldown
+                    respawn.RespawnTime = Envir.Time + 1 * Settings.Minute; // 每次升级失败，给它1分钟的等待时间
                     if (respawn.ErrorCount < 5)
                         respawn.ErrorCount++;
                     else
@@ -777,7 +777,7 @@ namespace Server.MirEnvir
                         {
                             respawn.ErrorCount++;
 
-                            Logger.GetLogger(LogType.Spawn).Info($"Failed to spawn: " +
+                            Logger.GetLogger(LogType.Spawn).Info($"转生失败未能成功: " +
                                 $"mapindex: {respawn.Map.Info.Index}, " +
                                 $"mob info: index: {respawn.Info.MonsterIndex}, " +
                                 $"spawncoords ({respawn.Info.Location.X}:{respawn.Info.Location.Y}), " +
@@ -820,11 +820,11 @@ namespace Server.MirEnvir
             }
         }
 
-         /**
-         * return the coordinates of effect coordinates within an n x n square (n should be odd number. i.e. 3x3, 5x5, 7x7)
-         * then use GetCell() in Map.cs to retrive real objects
-         * default 3x3
-         */
+        /**
+        * 返回n x n平方内的效应坐标的坐标（n应为奇数，即3x3、5x5、7x7）
+        * 然后在 Map.CS 中使用 GetCell（）检索真实对象
+        * 系统值 3x3
+        */
         public static List<Point> GetPointsInEffectiveSquare(Point location, int mapWidth, int mapHeight, int squareEdgeLength = 3)
         {
             var pointsWithinTheMap = new List<Point>();
@@ -870,7 +870,7 @@ namespace Server.MirEnvir
             switch (magic.Spell)
             {
 
-                #region HellFire
+                #region 地狱火岩浆等
 
                 case Spell.HellFire:
                     value = (int)data[2];
@@ -897,7 +897,7 @@ namespace Server.MirEnvir
                         {
                             case ObjectType.Monster:
                             case ObjectType.Player:
-                                //Only targets
+                                //唯一的目标
                                 if (target.IsAttackTarget(player))
                                 {
                                     if (target.Attacked(player, value, DefenceType.MAC, false) > 0)
@@ -911,7 +911,7 @@ namespace Server.MirEnvir
 
                 #endregion
 
-                #region SummonSkeleton, SummonShinsu, SummonHolyDeva, ArcherSummons
+                #region 召唤骷髅，召唤神瘦，召唤精灵，召唤弓箭手
 
                 case Spell.SummonSkeleton:
                 case Spell.SummonShinsu:
@@ -934,7 +934,7 @@ namespace Server.MirEnvir
 
                 #endregion
 
-                #region FireBang, IceStorm
+                #region 火爆，冰暴
 
                 case Spell.IceStorm:
                 case Spell.FireBang:

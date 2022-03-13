@@ -29,7 +29,7 @@ namespace Launcher
 
         private void Res1_pb_Click(object sender, EventArgs e)
         {
-            resolutionChoice(1024);
+            resolutionChoice(1280);  //1024
         }
 
         public void resolutionChoice(int res)

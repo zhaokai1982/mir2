@@ -316,7 +316,7 @@ namespace Client
                 DPS = DPSCounter;
                 DPSCounter = 0;
 
-                DXManager.Clean(); // Clean once a second.
+                DXManager.Clean(); // 每秒清洗一次.
             }
             else
                 _fps++;
@@ -573,7 +573,7 @@ namespace Client
                     graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.Black, new Point((Settings.ScreenWidth / 2) + 4, 11), sf);
                     graphics.DrawString(text, new Font(Settings.FontName, 9F), Brushes.White, new Point((Settings.ScreenWidth / 2) + 4, 10), sf);//SandyBrown               
 
-                    string path = Path.Combine(Application.StartupPath, @"Screenshots\");
+                    string path = Path.Combine(Application.StartupPath, @"截图\");
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
 

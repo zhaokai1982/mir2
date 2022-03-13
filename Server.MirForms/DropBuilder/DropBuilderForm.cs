@@ -182,7 +182,7 @@ namespace Server.MirForms.DropBuilder
                 textBoxGoldAmount.Text = "0";
                 textBoxGoldOdds.Text = string.Empty;
             }
-                
+
             textBoxDropList.Text += string.Format("{0};Weapons{0}", Environment.NewLine);
             for (int i = 0; i < Weapon.Count; i++)
                 textBoxDropList.Text += $"{Weapon[i].Odds} {Weapon[i].Name} {Weapon[i].Quest}{Environment.NewLine}";
@@ -354,7 +354,7 @@ namespace Server.MirForms.DropBuilder
                 {
                     try
                     {
-                        if (textBoxMinLevel.Text == string.Empty || textBoxMaxLevel.Text == string.Empty)                            
+                        if (textBoxMinLevel.Text == string.Empty || textBoxMaxLevel.Text == string.Empty)
                             TempListBox.Items.Add(Envir.ItemInfoList[i].Name);
                         else if (Envir.ItemInfoList[i].RequiredAmount >= int.Parse(textBoxMinLevel.Text) &
                             Envir.ItemInfoList[i].RequiredAmount <= int.Parse(textBoxMaxLevel.Text))
@@ -483,7 +483,7 @@ namespace Server.MirForms.DropBuilder
                     break;
             }
         }
-        
+
         // Update the results to show them filtered
         private void FilterValueChange(object sender, EventArgs e)
         {
@@ -506,153 +506,336 @@ namespace Server.MirForms.DropBuilder
                 switch (tabControlSeperateItems.SelectedTab.Tag.ToString())
                 {
                     case "Weapon":
-                        Weapon.Add(new DropItem { Name = listBoxWeapon.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Weapon.Add(new DropItem
+                        {
+                            Name = listBoxWeapon.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Armour":
-                        Armour.Add(new DropItem { Name = listBoxArmour.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Armour.Add(new DropItem
+                        {
+                            Name = listBoxArmour.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Helmet":
-                        Helmet.Add(new DropItem { Name = listBoxHelmet.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Helmet.Add(new DropItem
+                        {
+                            Name = listBoxHelmet.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Necklace":
-                        Necklace.Add(new DropItem { Name = listBoxNecklace.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Necklace.Add(new DropItem
+                        {
+                            Name = listBoxNecklace.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Bracelet":
-                        Bracelet.Add(new DropItem { Name = listBoxBracelet.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Bracelet.Add(new DropItem
+                        {
+                            Name = listBoxBracelet.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Ring":
-                        Ring.Add(new DropItem { Name = listBoxRing.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Ring.Add(new DropItem
+                        {
+                            Name = listBoxRing.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Amulet":
-                        Amulet.Add(new DropItem { Name = listBoxAmulet.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Amulet.Add(new DropItem
+                        {
+                            Name = listBoxAmulet.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Belt":
-                        Belt.Add(new DropItem { Name = listBoxBelt.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Belt.Add(new DropItem
+                        {
+                            Name = listBoxBelt.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Boots":
-                        Boot.Add(new DropItem { Name = listBoxBoot.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Boot.Add(new DropItem
+                        {
+                            Name = listBoxBoot.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Stone":
-                        Stone.Add(new DropItem { Name = listBoxStone.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Stone.Add(new DropItem
+                        {
+                            Name = listBoxStone.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Torch":
-                        Torch.Add(new DropItem { Name = listBoxTorch.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Torch.Add(new DropItem
+                        {
+                            Name = listBoxTorch.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Potion":
-                        Potion.Add(new DropItem { Name = listBoxPotion.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Potion.Add(new DropItem
+                        {
+                            Name = listBoxPotion.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Ore":
-                        Ore.Add(new DropItem { Name = listBoxOre.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Ore.Add(new DropItem
+                        {
+                            Name = listBoxOre.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Meat":
-                        Meat.Add(new DropItem { Name = listBoxMeat.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Meat.Add(new DropItem
+                        {
+                            Name = listBoxMeat.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "CraftingMaterial":
-                        CraftingMaterial.Add(new DropItem { Name = listBoxCraftingMaterial.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
+                        CraftingMaterial.Add(new DropItem
+                        {
+                            Name = listBoxCraftingMaterial.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
                             $"1/{dropChance}"
                         });
                         break;
                     case "Scroll":
-                        Scrolls.Add(new DropItem { Name = listBoxScroll.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Scrolls.Add(new DropItem
+                        {
+                            Name = listBoxScroll.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Gem":
-                        Gem.Add(new DropItem { Name = listBoxGem.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Gem.Add(new DropItem
+                        {
+                            Name = listBoxGem.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Mount":
-                        Mount.Add(new DropItem { Name = listBoxMount.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Mount.Add(new DropItem
+                        {
+                            Name = listBoxMount.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Book":
-                        Book.Add(new DropItem { Name = listBoxBook.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Book.Add(new DropItem
+                        {
+                            Name = listBoxBook.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Nothing":
-                        Nothing.Add(new DropItem { Name = listBoxNothing.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Nothing.Add(new DropItem
+                        {
+                            Name = listBoxNothing.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Script":
-                        Script.Add(new DropItem { Name = listBoxScript.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Script.Add(new DropItem
+                        {
+                            Name = listBoxScript.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Reins":
-                        Reins.Add(new DropItem { Name = listBoxReins.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Reins.Add(new DropItem
+                        {
+                            Name = listBoxReins.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Bells":
-                        Bells.Add(new DropItem { Name = listBoxBells.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Bells.Add(new DropItem
+                        {
+                            Name = listBoxBells.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Saddle":
-                        Saddle.Add(new DropItem { Name = listBoxSaddle.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Saddle.Add(new DropItem
+                        {
+                            Name = listBoxSaddle.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Ribbon":
-                        Ribbon.Add(new DropItem { Name = listBoxRibbon.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Ribbon.Add(new DropItem
+                        {
+                            Name = listBoxRibbon.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Mask":
-                        Mask.Add(new DropItem { Name = listBoxMask.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Mask.Add(new DropItem
+                        {
+                            Name = listBoxMask.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Food":
-                        Food.Add(new DropItem { Name = listBoxFood.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Food.Add(new DropItem
+                        {
+                            Name = listBoxFood.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Hook":
-                        Hook.Add(new DropItem { Name = listBoxHook.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Hook.Add(new DropItem
+                        {
+                            Name = listBoxHook.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Float":
-                        Float.Add(new DropItem { Name = listBoxFloat.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Float.Add(new DropItem
+                        {
+                            Name = listBoxFloat.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Bait":
-                        Bait.Add(new DropItem { Name = listBoxBait.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Bait.Add(new DropItem
+                        {
+                            Name = listBoxBait.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Finder":
-                        Finder.Add(new DropItem { Name = listBoxFinder.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Finder.Add(new DropItem
+                        {
+                            Name = listBoxFinder.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Reel":
-                        Reel.Add(new DropItem { Name = listBoxReel.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Reel.Add(new DropItem
+                        {
+                            Name = listBoxReel.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Fish":
-                        Fish.Add(new DropItem { Name = listBoxFish.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Fish.Add(new DropItem
+                        {
+                            Name = listBoxFish.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Quest":
-                        Quest.Add(new DropItem { Name = listBoxQuest.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Quest.Add(new DropItem
+                        {
+                            Name = listBoxQuest.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Awakening":
-                        Awakening.Add(new DropItem { Name = listBoxAwakening.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Awakening.Add(new DropItem
+                        {
+                            Name = listBoxAwakening.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Pets":
-                        Pets.Add(new DropItem { Name = listBoxPets.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Pets.Add(new DropItem
+                        {
+                            Name = listBoxPets.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                     case "Transform":
-                        Transform.Add(new DropItem { Name = listBoxTransform.SelectedItem.ToString().Replace(" ", string.Empty), Odds =
-                            $"1/{dropChance}", Quest = quest });
+                        Transform.Add(new DropItem
+                        {
+                            Name = listBoxTransform.SelectedItem.ToString().Replace(" ", string.Empty),
+                            Odds =
+                            $"1/{dropChance}",
+                            Quest = quest
+                        });
                         break;
                 }
 
@@ -715,7 +898,7 @@ namespace Server.MirForms.DropBuilder
                     if (lines[i + 1].StartsWith("1/"))
                     {
                         var workingLine = lines[i + 1].Split(' ');
-                        GoldOdds = workingLine[0].Remove(0,2);
+                        GoldOdds = workingLine[0].Remove(0, 2);
                         Gold = workingLine[2];
                         break;
                     }
@@ -783,7 +966,7 @@ namespace Server.MirForms.DropBuilder
 
                             var quest = "";
 
-                            if(workingLine.Length > 2 && workingLine[2] == "Q")
+                            if (workingLine.Length > 2 && workingLine[2] == "Q")
                             {
                                 quest = workingLine[2];
                             }

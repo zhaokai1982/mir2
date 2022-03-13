@@ -733,7 +733,7 @@ namespace Server
         {
             if (ActiveControl != sender) return;
             if (lbSpawnTickList.SelectedIndex == -1) return;
-            if (MessageBox.Show("Are you sure you want to delete the index?", "Delete?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+            if (MessageBox.Show("确实要删除索引吗?", "删除?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
             Envir.RespawnTick.Respawn.RemoveAt(lbSpawnTickList.SelectedIndex);
             //lbSpawnTickList.Items.RemoveAt(lbSpawnTickList.SelectedIndex);
 

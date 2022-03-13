@@ -43,25 +43,25 @@ namespace Client.MirScenes
                 Parent = this,
             };
 
-            Title = new MirImageControl
+            Title = new MirImageControl   
             {
                 Index = 40,
                 Library = Libraries.Title,
                 Parent = this,
-                Location = new Point(468, 20)
+                Location = new Point(600, 20)   //标题栏图片左侧边缘距离左侧边框位置
             };
 
             ServerLabel = new MirLabel
             {
-                Location = new Point(432, 60),
-                // Location = new Point(322, 44),
+                Location = new Point(560, 60),   //选择人物界面上方标题栏位置1280X768位置
+                // Location = new Point(432, 60),//选择人物界面上方标题栏位置1024X768大小时位置(432, 60)为左右中心.公式=分辨率宽度/2-80
                 Parent = Background,
                 Size = new Size(155, 17),
-                Text = "Legend of Mir 2",
+                Text = "热血无限国际传奇Ⅱ",     //人物创建选择界面上方游戏标题
                 DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
             };
 
-            var xPoint = ((Settings.ScreenWidth - 200) / 5);
+            var xPoint = ((Settings.ScreenWidth - 200) / 5);  //底部按钮左右均分位置
 
             StartGameButton = new MirButton
             {
@@ -124,17 +124,17 @@ namespace Client.MirScenes
             ExitGame.Click += (o, e) => Program.Form.Close();
 
 
-            CharacterDisplay = new MirAnimatedControl
+            CharacterDisplay = new MirAnimatedControl   //选择人物展示动画
             {
                 Animated = true,
-                AnimationCount = 16,
-                AnimationDelay = 250,
+                AnimationCount = 16,    //动画图片数量
+                AnimationDelay = 150,  //动画延时250默认
                 FadeIn = true,
-                FadeInDelay = 75,
+                FadeInDelay = 275,  //淡入淡出延时75默认
                 FadeInRate = 0.1F,
                 Index = 220,
                 Library = Libraries.ChrSel,
-                Location = new Point(260, 420),
+                Location = new Point(360, 450), //动画位置(距离左侧距离260, 距离顶部距离420)默认(260, 420)
                 Parent = Background,
                 UseOffSet = true,
                 Visible = false
@@ -145,11 +145,11 @@ namespace Client.MirScenes
                 Libraries.ChrSel.DrawBlend(CharacterDisplay.Index + 560, CharacterDisplay.DisplayLocationWithoutOffSet, Color.White, true);
             };
 
-            CharacterButtons = new CharacterButton[4];
+            CharacterButtons = new CharacterButton[4];//人物选择按钮创建4个 CharacterButton[4]
 
             CharacterButtons[0] = new CharacterButton
             {
-                Location = new Point(637, 194),
+                Location = new Point(637, 194),  //人物选择按钮位置
                 Parent = Background,
                 Sound = SoundList.ButtonA,
             };
@@ -202,7 +202,7 @@ namespace Client.MirScenes
                 UpdateInterface();
             };
 
-            LastAccessLabel = new MirLabel
+            LastAccessLabel = new MirLabel  //205行起始
             {
                 Location = new Point(265, 609),
                 Parent = Background,
@@ -214,7 +214,7 @@ namespace Client.MirScenes
             {
                 Location = new Point(-65, 0),
                 Parent = LastAccessLabel,
-                Text = "Last Online:",
+                Text = "上次在线：",
                 Size = new Size(100, 21),
                 DrawFormat = TextFormatFlags.Left | TextFormatFlags.VerticalCenter,
                 Border = true,
@@ -242,9 +242,9 @@ namespace Client.MirScenes
         {
             if (!Libraries.Loaded)
             {
-                MirMessageBox message = new MirMessageBox(string.Format("Please wait, The game is still loading... {0:##0}%", Libraries.Progress / (double)Libraries.Count * 100), MirMessageBoxButtons.Cancel);
+                MirMessageBox message = new MirMessageBox(string.Format("请稍候，游戏正在加载... {0:##0}%", Libraries.Progress / (double)Libraries.Count * 100), MirMessageBoxButtons.Cancel);
 
-                message.BeforeDraw += (o, e) => message.Label.Text = string.Format("Please wait, The game is still loading... {0:##0}%", Libraries.Progress / (double)Libraries.Count * 100);
+                message.BeforeDraw += (o, e) => message.Label.Text = string.Format("请稍候，游戏正在加载... {0:##0}%", Libraries.Progress / (double)Libraries.Count * 100);
 
                 message.AfterDraw += (o, e) =>
                 {
@@ -308,25 +308,25 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Creating new characters is currently disabled.");
+                    MirMessageBox.Show("当前已禁止创建新角色.");
                     _character.Dispose();
                     break;
                 case 1:
-                    MirMessageBox.Show("Your Character Name is not acceptable.");
+                    MirMessageBox.Show("您使用的角色名称不可用.");
                     _character.NameTextBox.SetFocus();
                     break;
                 case 2:
-                    MirMessageBox.Show("The gender you selected does not exist.\n Contact a GM for assistance.");
+                    MirMessageBox.Show("您选择的人物性别不存在.\n 请联系管理员寻求帮助.");
                     break;
                 case 3:
-                    MirMessageBox.Show("The class you selected does not exist.\n Contact a GM for assistance.");
+                    MirMessageBox.Show("您选择的职业不存在.\n 请联系管理员寻求帮助.");
                     break;
                 case 4:
-                    MirMessageBox.Show("You cannot make anymore then " + Globals.MaxCharacterCount + " Characters.");
+                    MirMessageBox.Show("您的角色已经满了只能使用 " + Globals.MaxCharacterCount + " 角色.");
                     _character.Dispose();
                     break;
                 case 5:
-                    MirMessageBox.Show("A Character with this name already exists.");
+                    MirMessageBox.Show("该角色名称已经被使用，请更换.");
                     _character.NameTextBox.SetFocus();
                     break;
             }
@@ -336,7 +336,7 @@ namespace Client.MirScenes
         private void NewCharacter(S.NewCharacterSuccess p)
         {
             _character.Dispose();
-            MirMessageBox.Show("Your character was created successfully.");
+            MirMessageBox.Show("您的角色已创建成功.");
 
             Characters.Insert(0, p.CharInfo);
             _selected = 0;
@@ -347,12 +347,12 @@ namespace Client.MirScenes
         {
             if (_selected < 0 || _selected >= Characters.Count) return;
 
-            MirMessageBox message = new MirMessageBox(string.Format("Are you sure you want to Delete the character {0}?", Characters[_selected].Name), MirMessageBoxButtons.YesNo);
+            MirMessageBox message = new MirMessageBox(string.Format("是否确实要删除该角色{0}?", Characters[_selected].Name), MirMessageBoxButtons.YesNo);
             int index = Characters[_selected].Index;
 
             message.YesButton.Click += (o1, e1) =>
             {
-                MirInputBox inputBox = new MirInputBox("Please enter the characters name.");
+                MirInputBox inputBox = new MirInputBox("请输入角色名称进行确认.");
                 inputBox.OKButton.Click += (o, e) =>
                 {
                     string name = Characters[_selected].Name.ToString();
@@ -364,7 +364,7 @@ namespace Client.MirScenes
                     }
                     else
                     {
-                        MirMessageBox failedMessage = new MirMessageBox(string.Format("Incorrect Entry."), MirMessageBoxButtons.OK);
+                        MirMessageBox failedMessage = new MirMessageBox(string.Format("输入名称错误."), MirMessageBoxButtons.OK);
                         failedMessage.Show();
                     }
                     inputBox.Dispose();
@@ -380,17 +380,17 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Deleting characters is currently disabled.");
+                    MirMessageBox.Show("删除的角色当前处于禁用状态.");
                     break;
                 case 1:
-                    MirMessageBox.Show("The character you selected does not exist.\n Contact a GM for assistance.");
+                    MirMessageBox.Show("您选择的角色不存在.\n 请联系管理员寻求帮助.");
                     break;
             }
         }
         private void DeleteCharacter(S.DeleteCharacterSuccess p)
         {
             DeleteCharacterButton.Enabled = true;
-            MirMessageBox.Show("Your character was deleted successfully.");
+            MirMessageBox.Show("您的角色已成功删除，删除后不可恢复.");
 
             for (int i = 0; i < Characters.Count; i++)
                 if (Characters[i].Index == p.CharacterIndex)
@@ -408,9 +408,9 @@ namespace Client.MirScenes
 
             long time = CMain.Time + p.Milliseconds;
 
-            MirMessageBox message = new MirMessageBox(string.Format("You cannot log onto this character for another {0} seconds.", Math.Ceiling(p.Milliseconds / 1000M)));
+            MirMessageBox message = new MirMessageBox(string.Format("您不能再登录此角色{0}秒.", Math.Ceiling(p.Milliseconds / 1000M)));
 
-            message.BeforeDraw += (o, e) => message.Label.Text = string.Format("You cannot log onto this character for another {0} seconds.", Math.Ceiling((time - CMain.Time) / 1000M));
+            message.BeforeDraw += (o, e) => message.Label.Text = string.Format("您不能再登录此角色{0}秒.", Math.Ceiling((time - CMain.Time) / 1000M));
 
 
             message.AfterDraw += (o, e) =>
@@ -427,7 +427,7 @@ namespace Client.MirScenes
             StartGameButton.Enabled = true;
 
             TimeSpan d = p.ExpiryDate - CMain.Now;
-            MirMessageBox.Show(string.Format("This account is banned.\n\nReason: {0}\nExpiryDate: {1}\nDuration: {2:#,##0} Hours, {3} Minutes, {4} Seconds", p.Reason,
+            MirMessageBox.Show(string.Format("这个帐号已被禁止的.\n\n原因: {0}\n到期日期: {1}\n剩余时间: {2:#,##0} 小时, {3} 分钟, {4} 秒", p.Reason,
                                              p.ExpiryDate, Math.Floor(d.TotalHours), d.Minutes, d.Seconds));
         }
         public void StartGame(S.StartGame p)
@@ -437,16 +437,16 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Starting the game is currently disabled.");
+                    MirMessageBox.Show("启动游戏当前处于禁用状态.");
                     break;
                 case 1:
-                    MirMessageBox.Show("You are not logged in.");
+                    MirMessageBox.Show("你没有登录.");
                     break;
                 case 2:
-                    MirMessageBox.Show("Your character could not be found.");
+                    MirMessageBox.Show("找不到你的角色.");
                     break;
                 case 3:
-                    MirMessageBox.Show("No active map and/or start point found.");
+                    MirMessageBox.Show("未找到可活动地图/或进入的起点.");
                     break;
                 case 4:
 
@@ -457,7 +457,7 @@ namespace Client.MirScenes
                         default:
                         case 1024:
                             Settings.Resolution = 1024;
-                            CMain.SetResolution(1024, 768);
+                            CMain.SetResolution(1280, 768);  //默认 1024，768 进入画面大小
                             break;
                         case 1280:
                             CMain.SetResolution(1280, 800);
@@ -507,7 +507,7 @@ namespace Client.MirScenes
                         break;
                 }
 
-                LastAccessLabel.Text = Characters[_selected].LastAccess == DateTime.MinValue ? "Never" : Characters[_selected].LastAccess.ToString();
+                LastAccessLabel.Text = Characters[_selected].LastAccess == DateTime.MinValue ? "没有记录" : Characters[_selected].LastAccess.ToString();
                 LastAccessLabel.Visible = true;
                 LastAccessLabelLabel.Visible = true;
                 StartGameButton.Enabled = true;
@@ -547,8 +547,8 @@ namespace Client.MirScenes
         }
         #endregion
         public sealed class NewCharacterDialog : MirImageControl
-        {
-            private static readonly Regex Reg = new Regex(@"^[A-Za-z0-9]{" + Globals.MinCharacterNameLength + "," + Globals.MaxCharacterNameLength + "}$");
+        {                                                  //增加 \u0391-\uFFE5 支持建立角色时，支持非英文字符以外的其他文字
+            private static readonly Regex Reg = new Regex(@"^[A-Za-z0-9-\u0391-\uFFE5]{" + Globals.MinCharacterNameLength + "," + Globals.MaxCharacterNameLength + "}$");
 
             public MirImageControl TitleLabel;
             public MirAnimatedControl CharacterDisplay;
@@ -572,29 +572,29 @@ namespace Client.MirScenes
 
             #region Descriptions
             public const string WarriorDescription =
-                "Warriors are a class of great strength and vitality. They are not easily killed in battle and have the advantage of being able to use" +
-                " a variety of heavy weapons and Armour. Therefore, Warriors favor attacks that are based on melee physical damage. They are weak in ranged" +
-                " attacks, however the variety of equipment that are developed specifically for Warriors complement their weakness in ranged combat.";
+                "勇士是一个充满力量和活力的阶层。它们不容易在战斗中被杀死，并且具有能够使用的优势" +
+                " 各种重型武器和盔甲。因此，战士喜欢基于近战物理伤害的攻击。他们的能力很弱" +
+                " 然而，攻击是专门为战士开发的各种设备，补充了他们在远程作战中的弱点.";
 
             public const string WizardDescription =
-                "Wizards are a class of low strength and stamina, but have the ability to use powerful spells. Their offensive spells are very effective, but" +
-                " because it takes time to cast these spells, they're likely to leave themselves open for enemy's attacks. Therefore, the physically weak wizards" +
-                " must aim to attack their enemies from a safe distance.";
+                "魔法师是一个体力和耐力都很低的职业，但他们有使用强大法术的能力。他们的攻击法术非常有效，但是" +
+                " 因为施放这些法术需要时间，它们很可能会让自己处于被敌人攻击的状态。因此，身体比较虚弱的魔法师" +
+                " 必须瞄准敌人从安全距离攻击敌人.";
 
             public const string TaoistDescription =
-                "Taoists are well disciplined in the study of Astronomy, Medicine, and others aside from Mu-Gong. Rather then directly engaging the enemies, their" +
-                " specialty lies in assisting their allies with support. Taoists can summon powerful creatures and have a high resistance to magic, and is a class" +
-                " with well balanced offensive and defensive abilities.";
+                "道家在天文学、医学和其他方面都有很好的纪律性，除了穆公。而不是直接与敌人交战，他们的" +
+                " 特长在于为盟友提供支持。道家可以召唤强大的生物，对魔法有很高的抵抗力，是一个职业" +
+                " 具有良好的进攻和防守能力.";
 
             public const string AssassinDescription =
-                "Assassins are members of a secret organization and their history is relatively unknown. They're capable of hiding themselves and performing attacks" +
-                " while being unseen by others, which naturally makes them excellent at making fast kills. It is necessary for them to avoid being in battles with" +
-                " multiple enemies due to their weak vitality and strength.";
+                "刺客是一个秘密组织的成员，他们的历史相对未知。他们能够隐藏自己并进行攻击" +
+                " 在别人看不见的情况下，这自然使他们擅长快速杀戮。他们有必要避免与敌人交战" +
+                " 由于生命力和力量较弱，有多个敌人.";
 
             public const string ArcherDescription =
-                "Archers are a class of great accuracy and strength, using their powerful skills with bows to deal extraordinary damage from range. Much like" +
-                " wizards, they rely on their keen instincts to dodge oncoming attacks as they tend to leave themselves open to frontal attacks. However, their" +
-                " physical prowess and deadly aim allows them to instil fear into anyone they hit.";
+                "弓箭手是一个非常精确和强大的职业，他们使用强大的弓箭技能在射程中造成非凡的伤害。很像" +
+                " 作为巫师，他们依靠敏锐的直觉来躲避迎面而来的攻击，因为他们倾向于让自己面对正面攻击。然而，他们的" +
+                " 身体的力量和致命的目标使他们能够向任何被他们击中的人灌输恐惧.";
 
             #endregion
 

@@ -3331,9 +3331,9 @@ namespace Client.MirObjects
                                     }
                                 case 8:
                                     {
-                                        switch (BaseImage)
-                                        {
-                                        }
+                                       /// switch (BaseImage)
+                                        ///{
+                                       /// }     //代码删除了没有注释完全，导致警告。
                                         break;
                                     }
                                 case 9:
@@ -3715,9 +3715,9 @@ namespace Client.MirObjects
                                     // Sanjian
                                 case 4:
                                     PlayDeadSound();
-                                    switch (BaseImage)
-                                    {
-                                    }
+                                    //switch (BaseImage)
+                                    //{
+                                    //} //代码删除了没有注释完全，导致警告！
                                     break;
                                 case 5:
                                     switch (BaseImage)

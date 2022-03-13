@@ -116,7 +116,7 @@ namespace Server.Database
             this.itemInfoGridView.Location = new System.Drawing.Point(0, 0);
             this.itemInfoGridView.Name = "itemInfoGridView";
             this.itemInfoGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.itemInfoGridView.Size = new System.Drawing.Size(956, 433);
+            this.itemInfoGridView.Size = new System.Drawing.Size(956, 400);
             this.itemInfoGridView.TabIndex = 0;
             this.itemInfoGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.itemInfoGridView_CellValidating);
             this.itemInfoGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.itemInfoGridView_DataError);
@@ -129,7 +129,7 @@ namespace Server.Database
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(956, 47);
+            this.panel1.Size = new System.Drawing.Size(956, 43);
             this.panel1.TabIndex = 1;
             // 
             // panel3
@@ -144,37 +144,37 @@ namespace Server.Database
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(956, 47);
+            this.panel3.Size = new System.Drawing.Size(956, 43);
             this.panel3.TabIndex = 5;
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(693, 22);
+            this.btnExport.Location = new System.Drawing.Point(871, 13);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.Size = new System.Drawing.Size(75, 21);
             this.btnExport.TabIndex = 6;
-            this.btnExport.Text = "Export";
+            this.btnExport.Text = "导出";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(611, 22);
+            this.btnImport.Location = new System.Drawing.Point(786, 13);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(75, 23);
+            this.btnImport.Size = new System.Drawing.Size(75, 21);
             this.btnImport.TabIndex = 5;
-            this.btnImport.Text = "Import";
+            this.btnImport.Text = "导入";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // lblFilterType
             // 
             this.lblFilterType.AutoSize = true;
-            this.lblFilterType.Location = new System.Drawing.Point(334, 9);
+            this.lblFilterType.Location = new System.Drawing.Point(356, 18);
             this.lblFilterType.Name = "lblFilterType";
-            this.lblFilterType.Size = new System.Drawing.Size(37, 13);
+            this.lblFilterType.Size = new System.Drawing.Size(41, 12);
             this.lblFilterType.TabIndex = 3;
-            this.lblFilterType.Text = "Type :";
+            this.lblFilterType.Text = "类型 :";
             // 
             // groupView
             // 
@@ -185,20 +185,20 @@ namespace Server.Database
             this.groupView.Controls.Add(this.rbtnViewStats);
             this.groupView.Location = new System.Drawing.Point(3, 3);
             this.groupView.Name = "groupView";
-            this.groupView.Size = new System.Drawing.Size(325, 41);
+            this.groupView.Size = new System.Drawing.Size(334, 38);
             this.groupView.TabIndex = 4;
             this.groupView.TabStop = false;
-            this.groupView.Text = "View Mode";
+            this.groupView.Text = "显示分类";
             // 
             // rBtnViewSpecial
             // 
             this.rBtnViewSpecial.AutoSize = true;
-            this.rBtnViewSpecial.Location = new System.Drawing.Point(248, 20);
+            this.rBtnViewSpecial.Location = new System.Drawing.Point(258, 16);
             this.rBtnViewSpecial.Name = "rBtnViewSpecial";
-            this.rBtnViewSpecial.Size = new System.Drawing.Size(60, 17);
+            this.rBtnViewSpecial.Size = new System.Drawing.Size(71, 16);
             this.rBtnViewSpecial.TabIndex = 4;
             this.rBtnViewSpecial.TabStop = true;
-            this.rBtnViewSpecial.Text = "Special";
+            this.rBtnViewSpecial.Text = "特殊物品";
             this.rBtnViewSpecial.UseVisualStyleBackColor = true;
             this.rBtnViewSpecial.CheckedChanged += new System.EventHandler(this.rBtnViewSpecial_CheckedChanged);
             // 
@@ -206,45 +206,45 @@ namespace Server.Database
             // 
             this.rbtnViewAll.AutoSize = true;
             this.rbtnViewAll.Checked = true;
-            this.rbtnViewAll.Location = new System.Drawing.Point(27, 19);
+            this.rbtnViewAll.Location = new System.Drawing.Point(12, 16);
             this.rbtnViewAll.Name = "rbtnViewAll";
-            this.rbtnViewAll.Size = new System.Drawing.Size(36, 17);
+            this.rbtnViewAll.Size = new System.Drawing.Size(47, 16);
             this.rbtnViewAll.TabIndex = 0;
             this.rbtnViewAll.TabStop = true;
-            this.rbtnViewAll.Text = "All";
+            this.rbtnViewAll.Text = "全部";
             this.rbtnViewAll.UseVisualStyleBackColor = true;
             this.rbtnViewAll.CheckedChanged += new System.EventHandler(this.rbtnViewAll_CheckedChanged);
             // 
             // rbtnViewBinding
             // 
             this.rbtnViewBinding.AutoSize = true;
-            this.rbtnViewBinding.Location = new System.Drawing.Point(181, 19);
+            this.rbtnViewBinding.Location = new System.Drawing.Point(187, 16);
             this.rbtnViewBinding.Name = "rbtnViewBinding";
-            this.rbtnViewBinding.Size = new System.Drawing.Size(60, 17);
+            this.rbtnViewBinding.Size = new System.Drawing.Size(47, 16);
             this.rbtnViewBinding.TabIndex = 3;
             this.rbtnViewBinding.TabStop = true;
-            this.rbtnViewBinding.Text = "Binding";
+            this.rbtnViewBinding.Text = "绑定";
             this.rbtnViewBinding.UseVisualStyleBackColor = true;
             this.rbtnViewBinding.CheckedChanged += new System.EventHandler(this.rbtnViewBinding_CheckedChanged);
             // 
             // rbtnViewBasic
             // 
             this.rbtnViewBasic.AutoSize = true;
-            this.rbtnViewBasic.Location = new System.Drawing.Point(69, 19);
+            this.rbtnViewBasic.Location = new System.Drawing.Point(63, 16);
             this.rbtnViewBasic.Name = "rbtnViewBasic";
-            this.rbtnViewBasic.Size = new System.Drawing.Size(51, 17);
+            this.rbtnViewBasic.Size = new System.Drawing.Size(47, 16);
             this.rbtnViewBasic.TabIndex = 1;
             this.rbtnViewBasic.TabStop = true;
-            this.rbtnViewBasic.Text = "Basic";
+            this.rbtnViewBasic.Text = "基本";
             this.rbtnViewBasic.UseVisualStyleBackColor = true;
             this.rbtnViewBasic.CheckedChanged += new System.EventHandler(this.rbtnViewBasic_CheckedChanged);
             // 
             // rbtnViewStats
             // 
             this.rbtnViewStats.AutoSize = true;
-            this.rbtnViewStats.Location = new System.Drawing.Point(126, 19);
+            this.rbtnViewStats.Location = new System.Drawing.Point(121, 16);
             this.rbtnViewStats.Name = "rbtnViewStats";
-            this.rbtnViewStats.Size = new System.Drawing.Size(49, 17);
+            this.rbtnViewStats.Size = new System.Drawing.Size(53, 16);
             this.rbtnViewStats.TabIndex = 2;
             this.rbtnViewStats.TabStop = true;
             this.rbtnViewStats.Text = "Stats";
@@ -255,26 +255,26 @@ namespace Server.Database
             // 
             this.drpFilterType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.drpFilterType.FormattingEnabled = true;
-            this.drpFilterType.Location = new System.Drawing.Point(337, 24);
+            this.drpFilterType.Location = new System.Drawing.Point(402, 14);
             this.drpFilterType.Name = "drpFilterType";
-            this.drpFilterType.Size = new System.Drawing.Size(121, 21);
+            this.drpFilterType.Size = new System.Drawing.Size(121, 20);
             this.drpFilterType.TabIndex = 2;
             this.drpFilterType.SelectedIndexChanged += new System.EventHandler(this.drpFilterType_SelectedIndexChanged);
             // 
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(461, 9);
+            this.lblSearch.Location = new System.Drawing.Point(536, 18);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(44, 13);
+            this.lblSearch.Size = new System.Drawing.Size(35, 12);
             this.lblSearch.TabIndex = 1;
-            this.lblSearch.Text = "Search:";
+            this.lblSearch.Text = "搜索:";
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(464, 25);
+            this.txtSearch.Location = new System.Drawing.Point(575, 14);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(141, 20);
+            this.txtSearch.Size = new System.Drawing.Size(141, 21);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
@@ -282,9 +282,9 @@ namespace Server.Database
             // 
             this.panel2.Controls.Add(this.itemInfoGridView);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 47);
+            this.panel2.Location = new System.Drawing.Point(0, 43);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(956, 433);
+            this.panel2.Size = new System.Drawing.Size(956, 400);
             this.panel2.TabIndex = 2;
             // 
             // Modified
@@ -295,31 +295,31 @@ namespace Server.Database
             this.Modified.HeaderText = "Modified";
             this.Modified.Name = "Modified";
             this.Modified.ReadOnly = true;
-            this.Modified.Width = 53;
+            this.Modified.Width = 59;
             // 
             // ItemIndex
             // 
             this.ItemIndex.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ItemIndex.DataPropertyName = "ItemIndex";
             this.ItemIndex.Frozen = true;
-            this.ItemIndex.HeaderText = "Index";
+            this.ItemIndex.HeaderText = "序号";
             this.ItemIndex.Name = "ItemIndex";
             this.ItemIndex.ReadOnly = true;
-            this.ItemIndex.Width = 58;
+            this.ItemIndex.Width = 54;
             // 
             // ItemName
             // 
             this.ItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.ItemName.DataPropertyName = "ItemName";
             this.ItemName.Frozen = true;
-            this.ItemName.HeaderText = "Name";
+            this.ItemName.HeaderText = "名 称";
             this.ItemName.Name = "ItemName";
             this.ItemName.Width = 60;
             // 
             // ItemType
             // 
             this.ItemType.DataPropertyName = "ItemType";
-            this.ItemType.HeaderText = "Type";
+            this.ItemType.HeaderText = "类 行";
             this.ItemType.Name = "ItemType";
             this.ItemType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
@@ -434,13 +434,13 @@ namespace Server.Database
             // 
             // ItemInfoFormNew
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(956, 480);
+            this.ClientSize = new System.Drawing.Size(956, 443);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "ItemInfoFormNew";
-            this.Text = "ItemInfoFormNew";
+            this.Text = "商品信息表";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ItemInfoFormNew_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.itemInfoGridView)).EndInit();
             this.panel1.ResumeLayout(false);

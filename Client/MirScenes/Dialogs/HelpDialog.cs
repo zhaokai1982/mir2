@@ -118,38 +118,38 @@ namespace Client.MirScenes.Dialogs
             Dictionary<string, string> keybinds = new Dictionary<string, string>();
 
             List<HelpPage> imagePages = new List<HelpPage> { 
-                new HelpPage("Shortcut Information", -1, new ShortcutPage1 { Parent = this } ) { Parent = this, Location = location, Visible = false }, 
-                new HelpPage("Shortcut Information", -1, new ShortcutPage2 { Parent = this } ) { Parent = this, Location = location, Visible = false }, 
-                new HelpPage("Chat Shortcuts", -1, new ShortcutPage3 { Parent = this } ) { Parent = this, Location = location, Visible = false }, 
-                new HelpPage("Movements", 0, null) { Parent = this, Location = location, Visible = false }, 
-                new HelpPage("Attacking", 1, null) { Parent = this, Location = location, Visible = false }, 
-                new HelpPage("Collecting Items", 2, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Health", 3, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Skills", 4, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Skills", 5, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Mana", 6, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Chatting", 7, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Groups", 8, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Durability", 9, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Purchasing", 10, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Selling", 11, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Repairing", 12, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Trading", 13, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Inspecting", 14, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Statistics", 15, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Statistics", 16, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Statistics", 17, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Statistics", 18, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Statistics", 19, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Statistics", 20, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Quests", 21, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Quests", 22, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Quests", 23, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Quests", 24, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Mounts", 25, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Mounts", 26, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Fishing", 27, null) { Parent = this, Location = location, Visible = false },
-                new HelpPage("Gems and Orbs", 28, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("快捷键设置信息", -1, new ShortcutPage1 { Parent = this } ) { Parent = this, Location = location, Visible = false }, 
+                new HelpPage("快捷键设置信息", -1, new ShortcutPage2 { Parent = this } ) { Parent = this, Location = location, Visible = false }, 
+                new HelpPage("聊天快捷方式", -1, new ShortcutPage3 { Parent = this } ) { Parent = this, Location = location, Visible = false }, 
+                new HelpPage("移动行走示例", 0, null) { Parent = this, Location = location, Visible = false }, 
+                new HelpPage("主动攻击方式", 1, null) { Parent = this, Location = location, Visible = false }, 
+                new HelpPage("拾取挖取物品", 2, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("使用补充类物品", 3, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("学习设置技能", 4, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("技能施展攻击", 5, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("补充魔法药品", 6, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("聊天对话", 7, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("组队好友", 8, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("装备持久提示", 9, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("购买物品", 10, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("出售交易物品", 11, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("修理修补装备", 12, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("买卖交易物品", 13, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("查看他人信息", 14, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("个人及装备信息", 15, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("个人及装备信息", 16, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("个人及装备信息", 17, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("个人及装备信息", 18, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("个人及装备信息", 19, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("个人及装备信息", 20, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("任务接取递交查看", 21, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("任务接取递交查看", 22, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("任务接取递交查看", 23, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("任务接取递交查看", 24, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("坐骑相关使用", 25, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("坐骑装备使用", 26, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("钓鱼系统", 27, null) { Parent = this, Location = location, Visible = false },
+                new HelpPage("装备宝石镶嵌", 28, null) { Parent = this, Location = location, Visible = false },
             };
 
             Pages.AddRange(imagePages);
@@ -212,24 +212,24 @@ namespace Client.MirScenes.Dialogs
         public ShortcutPage1()
         {
             Shortcuts = new List<ShortcutInfo>();
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Exit), "Exit the game"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Logout), "Log out"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Bar1Skill1) + "-" + CMain.InputKeys.GetKey(KeybindOptions.Bar1Skill8), "Skill buttons"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Inventory), "Inventory window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Equipment), "Status window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Skills), "Skill window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Group), "Group window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Trade), "Trade window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Friends), "Friend window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Minimap), "Minimap window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Guilds), "Guild window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.GameShop), "Gameshop window (open / close)"));
-            //Shortcuts.Add(new ShortcutInfo("K", "Rental window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Relationship), "Engagement window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Belt), "Belt window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Options), "Option window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Help), "Help window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Mount), "Mount / Dismount ride"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Exit), "退出游戏"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Logout), "退出当前角色"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Bar1Skill1) + "-" + CMain.InputKeys.GetKey(KeybindOptions.Bar1Skill8), "技能按钮"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Inventory), "查看背包窗口（打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Equipment), "个人状态窗口 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Skills), "技能条显示 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Group), "组队窗口 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Trade), "交易窗口 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Friends), "好友窗口 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Minimap), "小地图显示 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Guilds), "工会窗口 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.GameShop), "游戏商店 （打开/关闭）"));
+            //Shortcuts.Add(new ShortcutInfo("K", "游戏排行榜 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Relationship), "夫妻结婚窗口 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Belt), "物品快捷栏 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Options), "游戏设置窗口 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Help), "打开帮助 （打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Mount), "坐骑 / 上下坐骑"));
 
             LoadKeyBinds();
         }
@@ -239,26 +239,26 @@ namespace Client.MirScenes.Dialogs
         public ShortcutPage2()
         {
             Shortcuts = new List<ShortcutInfo>();
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.ChangePetmode), "Toggle pet attack pet"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.ChangePetmode), "切换宠物攻击模式"));
             //Shortcuts.Add(new ShortcutInfo("Ctrl + F", "Change the font in the chat box"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.ChangeAttackmode), "Toggle player attack mode"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodePeace), "Peace Mode - Attack monsters only"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeGroup), "Group Mode - Attack all subjects except your group members"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeGuild), "Guild Mode - Attack all subjects except your guild members"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeRedbrown), "Good/Evil Mode - Attack PK players and monsters only"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeAll), "All Attack Mode - Attack all subjects"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Bigmap), "Show the field map"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Skillbar), "Show the skill bar"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Autorun), "Auto run on / off"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Cameramode), "Show / Hide interface"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Pickup), "Highlight / Pickup Items"));
-            Shortcuts.Add(new ShortcutInfo("Ctrl + Right Click", "Show other players kits"));
-            //Shortcuts.Add(new ShortcutInfo("F12", "Chat macros"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Screenshot), "Screen Capture"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Fishing), "Open / Close fishing window"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Mentor), "Mentor window (open / close)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.CreaturePickup), "Creature Pickup (Multi Mouse Target)"));
-            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.CreatureAutoPickup), "Creature Pickup (Single Mouse Target)"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.ChangeAttackmode), "切换玩家攻击模式"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodePeace), "和平模式-只攻击怪物"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeGroup), "小组模式-攻击除小组成员以外的所有玩家"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeGuild), "公会模式-攻击除公会成员以外的所玩家"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeRedbrown), "善/恶模式-只攻击PK的玩家和怪物"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.AttackmodeAll), "所有攻击模式-攻击所有对象"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Bigmap), "显示所在位置大地图"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Skillbar), "显示技能栏"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Autorun), "自动跟随跑步前进，不需要按住鼠标右键跑步前进。 开/关"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Cameramode), "显示/隐藏所有操作界面，只显示画面，适合截图录像等"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Pickup), "拾取/地面脚下的物品，或切换技能栏需设置。"));
+            Shortcuts.Add(new ShortcutInfo("Ctrl + 鼠标右键", "查看其他玩家装备界面"));
+            //Shortcuts.Add(new ShortcutInfo("F12", "聊天宏"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Screenshot), "屏幕抓图"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Fishing), "打开/关闭钓鱼窗口"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.Mentor), "师徒系统（打开/关闭）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.CreaturePickup), "宠物拾取（多鼠标目标）"));
+            Shortcuts.Add(new ShortcutInfo(CMain.InputKeys.GetKey(KeybindOptions.CreatureAutoPickup), "宠物拾取（单鼠标目标）)"));
 
             LoadKeyBinds();
         }
@@ -268,10 +268,10 @@ namespace Client.MirScenes.Dialogs
         public ShortcutPage3()
         {
             Shortcuts = new List<ShortcutInfo>();
-            //Shortcuts.Add(new ShortcutInfo("` / Ctrl", "Change the skill bar"));
-            Shortcuts.Add(new ShortcutInfo("/(username)", "Command to whisper to others"));
-            Shortcuts.Add(new ShortcutInfo("!(text)", "Command to shout to others nearby"));
-            Shortcuts.Add(new ShortcutInfo("!~(text)", "Command to guild chat"));
+            //Shortcuts.Add(new ShortcutInfo("` / Ctrl", "更改技能栏"));
+            Shortcuts.Add(new ShortcutInfo("/(他人名字)", "和他人发送私密对话"));
+            Shortcuts.Add(new ShortcutInfo("!(内容)", "向附近的人喊话"));
+            Shortcuts.Add(new ShortcutInfo("!~(内容)", "行会聊天"));
 
             LoadKeyBinds();
         }
@@ -299,7 +299,7 @@ namespace Client.MirScenes.Dialogs
 
             MirLabel shortcutTitleLabel = new MirLabel
             {
-                Text = "Shortcuts",
+                Text = "快捷菜单",
                 DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter,
                 ForeColour = Color.White,
                 Font = new Font(Settings.FontName, 10F),
@@ -311,7 +311,7 @@ namespace Client.MirScenes.Dialogs
 
             MirLabel infoTitleLabel = new MirLabel
             {
-                Text = "Information",
+                Text = "信息",
                 DrawFormat = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter,
                 ForeColour = Color.White,
                 Font = new Font(Settings.FontName, 10F),

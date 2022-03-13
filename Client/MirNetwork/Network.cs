@@ -176,7 +176,7 @@ namespace Client.MirNetwork
                         return;
                     }
 
-                    MirMessageBox.Show("Lost connection with the server.", true);
+                    MirMessageBox.Show("与服务器的-连接中断.", true);
                     Disconnect();
                     return;
                 }

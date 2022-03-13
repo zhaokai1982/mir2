@@ -386,33 +386,33 @@ namespace Server.Database
             if (col.ValueType == typeof(int) && col.Name != "StatAttackSpeed" && int.TryParse(val, out int val1) && val1 < 0)
             {
                 e.Cancel = true;
-                itemInfoGridView.Rows[e.RowIndex].ErrorText = "the value must be a positive integer";
+                itemInfoGridView.Rows[e.RowIndex].ErrorText = "该值必须是正整数";
             }
 
             if (col.ValueType == typeof(int) && !int.TryParse(val, out _))
             {
                 e.Cancel = true;
-                itemInfoGridView.Rows[e.RowIndex].ErrorText = "the value must be an integer";
+                itemInfoGridView.Rows[e.RowIndex].ErrorText = "该值必须是整数";
             }
             else if (col.ValueType == typeof(byte) && !byte.TryParse(val, out _))
             {
                 e.Cancel = true;
-                itemInfoGridView.Rows[e.RowIndex].ErrorText = "the value must be a byte";
+                itemInfoGridView.Rows[e.RowIndex].ErrorText = "该值必须是一个字节";
             }
             else if (col.ValueType == typeof(short) && !short.TryParse(val, out _))
             {
                 e.Cancel = true;
-                itemInfoGridView.Rows[e.RowIndex].ErrorText = "the value must be a short";
+                itemInfoGridView.Rows[e.RowIndex].ErrorText = "值必须是短的";
             }
             else if (col.ValueType == typeof(ushort) && !ushort.TryParse(val, out _))
             {
                 e.Cancel = true;
-                itemInfoGridView.Rows[e.RowIndex].ErrorText = "the value must be a ushort";
+                itemInfoGridView.Rows[e.RowIndex].ErrorText = "该值必须是ushort";
             }
             else if (col.ValueType == typeof(long) && !long.TryParse(val, out _))
             {
                 e.Cancel = true;
-                itemInfoGridView.Rows[e.RowIndex].ErrorText = "the value must be a long";
+                itemInfoGridView.Rows[e.RowIndex].ErrorText = "该值必须是长的";
             }
         }
 
@@ -524,7 +524,7 @@ namespace Server.Database
 
             if (drpFilterType.Text == "Gem")
             {
-                //TODO - Change columns for gems when gem option is chosen.
+                //TODO-选择gem选项时更改gem的列.
             }
             else
             {
@@ -585,7 +585,7 @@ namespace Server.Database
                             if (cells.Length != columns.Length)
                             {
                                 fileError = true;
-                                MessageBox.Show($"Row {i} column count does not match the headers column count.");
+                                MessageBox.Show($"行{i}列计数与标题列计数不匹配.");
                                 break;
                             }
 
@@ -640,7 +640,7 @@ namespace Server.Database
                             catch(Exception ex)
                             {
                                 fileError = true;
-                                MessageBox.Show($"Error when importing item {cells[0]}. {ex.Message}");
+                                MessageBox.Show($"导入项目时出错 {cells[0]}. {ex.Message}");
                                 continue;
                             }
 
@@ -656,13 +656,13 @@ namespace Server.Database
 
                         if (!fileError)
                         {
-                            MessageBox.Show($"{rowsEdited} items have been imported.");
+                            MessageBox.Show($"{rowsEdited} 物品已经导出.");
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No rows to import.");
+                    MessageBox.Show("没有要导入的行.");
                 }
             }
         }
@@ -686,7 +686,7 @@ namespace Server.Database
                         catch (IOException ex)
                         {
                             fileError = true;
-                            MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
+                            MessageBox.Show("无法将数据写入磁盘." + ex.Message);
                         }
                     }
                     if (!fileError)
@@ -732,18 +732,18 @@ namespace Server.Database
                             }
 
                             File.WriteAllLines(sfd.FileName, outputCsv, Encoding.UTF8);
-                            MessageBox.Show("Data Exported Successfully.", "Info");
+                            MessageBox.Show("没有要出口的物品.", "消息");
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Error :" + ex.Message);
+                            MessageBox.Show("错误 :" + ex.Message);
                         }
                     }
                 }
             }
             else
             {
-                MessageBox.Show("No Items To Export.", "Info");
+                MessageBox.Show("没有导出的物品.", "消息");
             }
         }
 

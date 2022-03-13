@@ -1,6 +1,6 @@
 ﻿public static class Globals
 {
-    public const string ProductCodename = "Crystal";
+    public const string ProductCodename = "Crystal";   //基本数值限制换算等
 
     public const int
 
@@ -12,7 +12,7 @@
 
         MinCharacterNameLength = 3,
         MaxCharacterNameLength = 15,
-        MaxCharacterCount = 4,
+        MaxCharacterCount = 4,  //最多创建角色数
 
         MaxChatLength = 80,
 

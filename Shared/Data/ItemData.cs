@@ -58,8 +58,8 @@ public class ItemInfo
         get
         {
             string temp = Name;
-            temp = Regex.Replace(temp, @"\d+$", string.Empty); //hides end numbers
-            temp = Regex.Replace(temp, @"\[[^]]*\]", string.Empty); //hides square brackets
+            temp = Regex.Replace(temp, @"\d+$", string.Empty); //隐藏结束符号
+            temp = Regex.Replace(temp, @"\[[^]]*\]", string.Empty); //隐藏方括号
 
             return temp;
         }

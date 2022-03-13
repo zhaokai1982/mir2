@@ -118,7 +118,7 @@ namespace Server
         private void MineRemoveIndexbutton_Click(object sender, EventArgs e)
         {
             if (ActiveControl != sender) return;
-            if (MessageBox.Show("Are you sure you want to delete the last index?", "Delete?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+            if (MessageBox.Show("确实要删除最后一个索引吗?", "删除?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
             MinesChanged = true;
             MineIndexcomboBox.Items.RemoveAt(Settings.MineSetList.Count - 1);
             Settings.MineSetList.RemoveAt(Settings.MineSetList.Count - 1);
@@ -223,7 +223,7 @@ namespace Server
         private void MineRemoveDropbutton_Click(object sender, EventArgs e)
         {
             if (ActiveControl != sender) return;
-            if (MessageBox.Show("Are you sure you want to delete the last index?", "Delete?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+            if (MessageBox.Show("确实要删除最后一个索引吗?", "删除?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
             MinesChanged = true;
             MineDropsIndexcomboBox.Items.Remove(Settings.MineSetList[MineIndexcomboBox.SelectedIndex].Drops.Count - 1);
             Settings.MineSetList[MineIndexcomboBox.SelectedIndex].Drops.RemoveAt(Settings.MineSetList[MineIndexcomboBox.SelectedIndex].Drops.Count - 1);

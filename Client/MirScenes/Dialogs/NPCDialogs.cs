@@ -26,7 +26,6 @@ namespace Client.MirScenes.Dialogs
         public static Regex C = new Regex(@"{((.*?)\/(.*?))}");
         public static Regex L = new Regex(@"\(((.*?)\/(.*?))\)");
         public static Regex B = new Regex(@"<<((.*?)\/(\@.*?))>>");
-        public static Regex B2 = new Regex(@"{<((.*?)\/(\@.*?))>}");
 
         public MirButton CloseButton, UpButton, DownButton, PositionBar, QuestButton, HelpButton;
         public MirLabel[] TextLabel;
@@ -147,7 +146,7 @@ namespace Client.MirScenes.Dialogs
                 Location = new Point(390, 3),
                 Sound = SoundList.ButtonA,
             };
-            HelpButton.Click += (o, e) => GameScene.Scene.HelpDialog.DisplayPage("Purchasing");
+            HelpButton.Click += (o, e) => GameScene.Scene.HelpDialog.DisplayPage("购买");//("Purchasing")
 
             BigButtonDialog = new BigButtonDialog()
             {
@@ -255,7 +254,6 @@ namespace Client.MirScenes.Dialogs
                     string currentLine = lines[i];
 
                     List<Match> matchList = B.Matches(currentLine).Cast<Match>().ToList();
-                    matchList.AddRange(B2.Matches(currentLine).Cast<Match>());
                     List<Match> sortedList = matchList.OrderBy(o => o.Index).ToList();
 
                     for (int j = 0; j < sortedList.Count; j++)
@@ -264,35 +262,28 @@ namespace Client.MirScenes.Dialogs
                         Capture capture = match.Groups[1].Captures[0];
                         string txt = match.Groups[2].Captures[0].Value;
                         string action = match.Groups[3].Captures[0].Value;
+                        string colourString = "RoyalBlue";
 
-                        BigButton button = null;
-                        if (B.Match(match.Value).Success)
+                        string[] actionSplit = action.Split('/');
+
+                        action = actionSplit[0];
+                        if (actionSplit.Length > 1)
+                            colourString = actionSplit[1];
+
+                        Color color = Color.FromName(colourString);
+
+                        BigButton button = new BigButton
                         {
-                            button = new BigButton
-                            {
-                                Index = 833,
-                                HoverIndex = 834,
-                                PressedIndex = 835,
-                                Library = Libraries.Title,
-                                Sound = SoundList.ButtonA,
-                                Text = txt,
-                                FontColour = Color.Bisque,
-                            };
-                        }
-                        else
-                        {
-                            button = new BigButton
-                            {
-                                Index = 830,
-                                HoverIndex = 831,
-                                PressedIndex = 832,
-                                Library = Libraries.Title,
-                                Sound = SoundList.ButtonA,
-                                Text = txt,
-                                FontColour = Color.White,
-                            };
-                        }                   
-                        
+                            Index = 841,
+                            HoverIndex = 842,
+                            PressedIndex = 843,
+                            Library = Libraries.Title,
+                            Sound = SoundList.ButtonA,
+                            Text = txt,
+                            FontColour = Color.White,
+                            ForeColour = color
+                        };
+
                         button.Click += (o, e) =>
                         {
                             ButtonClicked(action);
@@ -301,7 +292,6 @@ namespace Client.MirScenes.Dialogs
                     }
 
                     currentLine = Regex.Replace(currentLine, B.ToString(), "");
-                    currentLine = Regex.Replace(currentLine, B2.ToString(), "");
 
                     if (string.IsNullOrWhiteSpace(currentLine))
                         lines.RemoveAt(i);                                                    
@@ -699,7 +689,7 @@ namespace Client.MirScenes.Dialogs
                         maxQuantity = Math.Min(ushort.MaxValue, (ushort)(GameScene.Gold / (SelectedItem.Price() / SelectedItem.Count)));
                         if (maxQuantity == 0)
                         {
-                            GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough Pearls.", ChatType.System);
+                            GameScene.Scene.ChatDialog.ReceiveChat("你没有足够的珍珠.", ChatType.System);
                             return;
                         }
                     }
@@ -746,7 +736,7 @@ namespace Client.MirScenes.Dialogs
 
                 if (SelectedItem.Weight > (MapObject.User.Stats[Stat.BagWeight] - MapObject.User.CurrentBagWeight))
                 {
-                    GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough weight.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("你的承重不够.", ChatType.System);
                     return;
                 }
 
@@ -755,7 +745,7 @@ namespace Client.MirScenes.Dialogs
                     if (MapObject.User.Inventory[i] == null) break;
                     if (i == MapObject.User.Inventory.Length - 1)
                     {
-                        GameScene.Scene.ChatDialog.ReceiveChat("You cannot purchase any more items.", ChatType.System);
+                        GameScene.Scene.ChatDialog.ReceiveChat("您不能再购买任何物品.", ChatType.System);
                         return;
                     }
                 }
@@ -840,7 +830,7 @@ namespace Client.MirScenes.Dialogs
 
             foreach (UserItem item in list)
             {
-                //Normal shops just want to show one of each item type
+                //普通商店只想展示每种商品类型中的一种
                 if (PType == PanelType.Buy && !UsePearls)
                 {
                     Goods.Add(item);
@@ -977,7 +967,7 @@ namespace Client.MirScenes.Dialogs
                 case PanelType.Sell:
                     if (TargetItem.Info.Bind.HasFlag(BindMode.DontSell))
                     {
-                        GameScene.Scene.ChatDialog.ReceiveChat("Cannot sell this item.", ChatType.System);
+                        GameScene.Scene.ChatDialog.ReceiveChat("无法出售此商品.", ChatType.System);
                         return;
                     }
                     if (GameScene.Gold + TargetItem.Price() / 2 <= uint.MaxValue)
@@ -986,12 +976,12 @@ namespace Client.MirScenes.Dialogs
                         TargetItem = null;
                         return;
                     }
-                    GameScene.Scene.ChatDialog.ReceiveChat("Cannot carry anymore gold.", ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat("无法携带更多金子了.", ChatType.System);
                     break;
                 case PanelType.Repair:
                     if (TargetItem.Info.Bind.HasFlag(BindMode.DontRepair))
                     {
-                        GameScene.Scene.ChatDialog.ReceiveChat("Cannot repair this item.", ChatType.System);
+                        GameScene.Scene.ChatDialog.ReceiveChat("无法修复此物品.", ChatType.System);
                         return;
                     }
                     if (GameScene.Gold >= TargetItem.RepairPrice() * GameScene.NPCRate)
@@ -1005,7 +995,7 @@ namespace Client.MirScenes.Dialogs
                 case PanelType.SpecialRepair:
                     if ((TargetItem.Info.Bind.HasFlag(BindMode.DontRepair)) || (TargetItem.Info.Bind.HasFlag(BindMode.NoSRepair)))
                     {
-                        GameScene.Scene.ChatDialog.ReceiveChat("Cannot repair this item.", ChatType.System);
+                        GameScene.Scene.ChatDialog.ReceiveChat("无法修复此物品.", ChatType.System);
                         return;
                     }
                     if (GameScene.Gold >= (TargetItem.RepairPrice() * 3) * GameScene.NPCRate)
@@ -1019,10 +1009,10 @@ namespace Client.MirScenes.Dialogs
                 case PanelType.Consign:
                     if (TargetItem.Info.Bind.HasFlag(BindMode.DontStore) || TargetItem.Info.Bind.HasFlag(BindMode.DontSell))
                     {
-                        GameScene.Scene.ChatDialog.ReceiveChat("Cannot consign this item.", ChatType.System);
+                        GameScene.Scene.ChatDialog.ReceiveChat("无法寄售此商品.", ChatType.System);
                         return;
                     }
-                    MirAmountBox box = new MirAmountBox("Consignment Price:", TargetItem.Image, Globals.MaxConsignment, Globals.MinConsignment)
+                    MirAmountBox box = new MirAmountBox("寄售价格:", TargetItem.Image, Globals.MaxConsignment, Globals.MinConsignment)
                     {
                         InputTextBox = { Text = string.Empty },
                         Amount = 0
@@ -1059,18 +1049,18 @@ namespace Client.MirScenes.Dialogs
                                 TargetItem = null;
                                 return;
                             }
-                            GameScene.Scene.ChatDialog.ReceiveChat(String.Format("You don't have enough gold to refine your {0}.", TargetItem.FriendlyName), ChatType.System);
+                            GameScene.Scene.ChatDialog.ReceiveChat(String.Format("你没有足够的黄金来提炼你的钻石 {0}.", TargetItem.FriendlyName), ChatType.System);
                             return;
                         }
 
                     }
-                    GameScene.Scene.ChatDialog.ReceiveChat(String.Format("You haven't deposited any items to refine your {0} with.", TargetItem.FriendlyName), ChatType.System);
+                    GameScene.Scene.ChatDialog.ReceiveChat(String.Format("您还没有存放任何物品来提升您的 {0} 物品.", TargetItem.FriendlyName), ChatType.System);
                     break;
                 case PanelType.CheckRefine:
 
                     if (TargetItem.RefineAdded == 0)
                     {
-                        GameScene.Scene.ChatDialog.ReceiveChat(String.Format("Your {0} hasn't been refined so it doesn't need checking.", TargetItem.FriendlyName), ChatType.System);
+                        GameScene.Scene.ChatDialog.ReceiveChat(String.Format("你的 {0} 没有经过提升，所以不需要检查.", TargetItem.FriendlyName), ChatType.System);
                         return;
                     }
                     Network.Enqueue(new C.CheckRefine { UniqueID = TargetItem.UniqueID });
@@ -1080,7 +1070,7 @@ namespace Client.MirScenes.Dialogs
 
                     if (TargetItem.Info.Type != ItemType.Ring)
                     {
-                        GameScene.Scene.ChatDialog.ReceiveChat(String.Format("{0} isn't a ring.", TargetItem.FriendlyName), ChatType.System);
+                        GameScene.Scene.ChatDialog.ReceiveChat(String.Format("{0} 这不是戒指吗.", TargetItem.FriendlyName), ChatType.System);
                         return;
                     }
 
@@ -1208,19 +1198,19 @@ namespace Client.MirScenes.Dialogs
             switch (PType)
             {
                 case PanelType.Sell:
-                    text = "Sale: ";
+                    text = "售价: ";
                     break;
                 case PanelType.Repair:
-                    text = "Repair: ";
+                    text = "修理: ";
                     break;
                 case PanelType.SpecialRepair:
-                    text = "S. Repair: ";
+                    text = "特修: ";
                     break;
                 case PanelType.Consign:
-                    InfoLabel.Text = "Consignment: ";
+                    InfoLabel.Text = "寄售: ";
                     return;
                 case PanelType.Disassemble:
-                    text = "Item will be Destroyed\n\n\n\n\n\n\n\n         ";
+                    text = "将销毁物品\n\n\n\n\n\n\n\n         ";
                     HoldButton.Visible = false;
                     Index = 711;
                     Library = Libraries.Title;
@@ -1233,26 +1223,26 @@ namespace Client.MirScenes.Dialogs
                     ItemCell.Location = new Point(83, 94);
                     break;
                 case PanelType.Downgrade:
-                    text = "Downgrade: ";
+                    text = "下调: ";
                     HoldButton.Visible = false;
                     break;
                 case PanelType.Reset:
-                    text = "Reset: ";
+                    text = "调整: ";
                     HoldButton.Visible = false;
                     break;
                 case PanelType.Refine:
-                    text = "Refine: ";
+                    text = "精炼: ";
                     HoldButton.Visible = false;
                     ConfirmButton.Visible = true;
                     GameScene.Scene.RefineDialog.Show();
                     break;
                 case PanelType.CheckRefine:
-                    text = "Check Refine";
+                    text = "精炼提纯";
                     HoldButton.Visible = false;
                     ConfirmButton.Visible = true;
                     break;
                 case PanelType.ReplaceWedRing:
-                    text = "Replace: ";
+                    text = "更换: ";
                     HoldButton.Visible = false;
                     ConfirmButton.Visible = true;
                     break;
@@ -1293,7 +1283,7 @@ namespace Client.MirScenes.Dialogs
                     default: return;
                 }
 
-                text += " Gold";
+                text += "金币";
             }
 
             InfoLabel.Text = text;
@@ -1556,7 +1546,7 @@ namespace Client.MirScenes.Dialogs
                     typeName = "Body Glyph";
                     break;
                 default:
-                    typeName = "Select Upgrade Item.";
+                    typeName = "选择升级项目.";
                     break;
             }
             return typeName;
@@ -1965,7 +1955,7 @@ namespace Client.MirScenes.Dialogs
 
             ushort max = 99;
 
-            //Max quantity based on available ingredients/tools
+            //基于可用成分/工具的最大数量
             for (int i = 0; i < Grid.Length; i++)
             {
                 if (Grid[i] == null || Grid[i].Item == null) continue;
@@ -1988,24 +1978,24 @@ namespace Client.MirScenes.Dialogs
                 max = (ushort)(RecipeItem.Info.StackSize / RecipeItem.Count);
             }
 
-            //TODO - Check Max slots spare against slots to be used (stacksize/quantity)
-            //TODO - GetMaxItemGain
+            //TODO - 根据要使用的插槽检查最大备用插槽（堆叠大小/数量）
+            //TODO - 获得最大物品增益
 
             if (RecipeItem.Weight > (MapObject.User.Stats[Stat.BagWeight] - MapObject.User.CurrentBagWeight))
             {
-                GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough weight.", ChatType.System);
+                GameScene.Scene.ChatDialog.ReceiveChat("你的承重不够.", ChatType.System);
                 return;
             }
 
             if (Recipe.Gold > GameScene.Gold)
             {
-                GameScene.Scene.ChatDialog.ReceiveChat("You do not have enough gold.", ChatType.System);
+                GameScene.Scene.ChatDialog.ReceiveChat("你没有足够的金子.", ChatType.System);
                 return;
             }
 
             if (max > 1)
             {
-                MirAmountBox amountBox = new MirAmountBox("Craft Amount:", RecipeItem.Info.Image, max, 0, max);
+                MirAmountBox amountBox = new MirAmountBox("工艺量:", RecipeItem.Info.Image, max, 0, max);
 
                 amountBox.OKButton.Click += (o, e) =>
                 {
@@ -2013,7 +2003,7 @@ namespace Client.MirScenes.Dialogs
                     {
                         if (!HasCraftItems((ushort)amountBox.Amount))
                         {
-                            GameScene.Scene.ChatDialog.ReceiveChat("You do not have the required tools or ingredients.", ChatType.System);
+                            GameScene.Scene.ChatDialog.ReceiveChat("你缺少所需的工具或原料.", ChatType.System);
                             return;
                         }
 
@@ -2588,11 +2578,11 @@ namespace Client.MirScenes.Dialogs
     }
     public sealed class BigButton : MirButton
     {
-        #region Label
+        #region 标签
         private MirLabel _shadowLabel;
         #endregion
 
-        #region CenterText
+        #region 中心文本
         public override bool CenterText
         {
             get
@@ -2618,7 +2608,7 @@ namespace Client.MirScenes.Dialogs
         }
         #endregion
 
-        #region Font Colour
+        #region 字体颜色
         public override Color FontColour
         {
             get
@@ -2635,7 +2625,7 @@ namespace Client.MirScenes.Dialogs
         }
         #endregion
 
-        #region Size
+        #region 大小
         protected override void OnSizeChanged()
         {
             base.OnSizeChanged();
@@ -2645,7 +2635,7 @@ namespace Client.MirScenes.Dialogs
         }
         #endregion
 
-        #region Text
+        #region 文本
         public override string Text
         {
             set
@@ -2693,6 +2683,28 @@ namespace Client.MirScenes.Dialogs
                 DrawFormat = TextFormatFlags.HorizontalCenter,                
                 Font = ScaleFont(new Font(Settings.FontName, 12F, FontStyle.Bold))
             };
+        }
+
+        protected internal override void DrawControl()
+        {
+            base.DrawControl();
+
+            if (DrawImage && Library != null)
+            {
+                bool oldGray = DXManager.GrayScale;
+
+                if (GrayScale)
+                {
+                    DXManager.SetGrayscale(true);
+                }
+
+                if (Blending)
+                    Library.DrawBlend(Index + 3, DisplayLocation, Color.White, false, BlendingRate);
+                else
+                    Library.Draw(Index + 3, DisplayLocation, Color.White, false, Opacity);
+
+                if (GrayScale) DXManager.SetGrayscale(oldGray);
+            }
         }
 
         #region Disposable

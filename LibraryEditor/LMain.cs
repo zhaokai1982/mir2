@@ -327,7 +327,7 @@ namespace LibraryEditor
             if (_library.FileName == null) return;
             if (PreviewListView.SelectedIndices.Count == 0) return;
 
-            if (MessageBox.Show("Are you sure you want to delete the selected Image?",
+            if (MessageBox.Show("确实要删除选定的图像吗?",
                 "Delete Selected.",
                 MessageBoxButtons.YesNoCancel) != DialogResult.Yes) return;
 
@@ -413,7 +413,7 @@ namespace LibraryEditor
 
         private void removeBlanksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to remove the blank images?",
+            if (MessageBox.Show("确实要删除选定的图像吗?",
                 "Remove Blanks",
                 MessageBoxButtons.YesNo) != DialogResult.Yes) return;
 
@@ -563,7 +563,7 @@ namespace LibraryEditor
 
         private void safeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to remove the blank images?",
+            if (MessageBox.Show("确实要删除空白图像吗？?",
                 "Remove Blanks", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
 
             _library.RemoveBlanks(true);
@@ -619,11 +619,11 @@ namespace LibraryEditor
                     OldLibrary = null;
                 }
 
-                // Recurse into subdirectories of this directory.
+                // 递归到此目录的子目录中.
                 string[] subdirEntries = Directory.GetDirectories(sourceDir);
                 foreach (string subdir in subdirEntries)
                 {
-                    // Do not iterate through re-parse points.
+                    // 不要迭代重新解析点.
                     if (Path.GetFileName(Path.GetFullPath(subdir).TrimEnd(Path.DirectorySeparatorChar)) == Path.GetFileName(Path.GetFullPath(outputDir).TrimEnd(Path.DirectorySeparatorChar))) continue;
                     if ((File.GetAttributes(subdir) &
                          FileAttributes.ReparsePoint) !=
@@ -633,7 +633,7 @@ namespace LibraryEditor
             }
         }
 
-        // Export a single image.
+        // 导出单个图像.
         private void ExportButton_Click(object sender, EventArgs e)
         {
             if (_library == null) return;
@@ -646,7 +646,7 @@ namespace LibraryEditor
 
             Bitmap blank = new Bitmap(1, 1);
 
-            // Create the folder if it doesn't exist.
+            // 如果文件夹不存在，请创建该文件夹.
             (new FileInfo(_folder)).Directory.Create();
 
             ListView.SelectedIndexCollection _col = PreviewListView.SelectedIndices;
@@ -675,10 +675,10 @@ namespace LibraryEditor
             }
 
             toolStripProgressBar.Value = 0;
-            MessageBox.Show("Saving to " + _folder + "...", "Image Saved", MessageBoxButtons.OK);
+            MessageBox.Show("储蓄到 " + _folder + "...", "保存图像", MessageBoxButtons.OK);
         }
 
-        // Don't let the splitter go out of sight on resizing.
+        // 调整大小时不要让拆分器消失在视线之外.
         private void LMain_Resize(object sender, EventArgs e)
         {
             if (splitContainer1.SplitterDistance <= this.Height - 150) return;
@@ -688,7 +688,7 @@ namespace LibraryEditor
             }
         }
 
-        // Resize the image(Zoom).
+        // 调整图像大小（缩放）.
         private Image ImageBoxZoom(Image image, Size size)
         {
             _originalImage = _selectedImage.Image;
@@ -697,7 +697,7 @@ namespace LibraryEditor
             return _bmp;
         }
 
-        // Zoom in and out.
+        // 放大和缩小.
         private void ZoomTrackBar_Scroll(object sender, EventArgs e)
         {
             if (ImageBox.Image == null)
@@ -740,7 +740,7 @@ namespace LibraryEditor
             }
         }
 
-        // Swap the image panel background colour Black/White.
+        // 将图像面板背景颜色调换为黑色/白色.
         private void pictureBox_Click(object sender, EventArgs e)
         {
             if (panel.BackColor == Color.Black)
@@ -755,13 +755,13 @@ namespace LibraryEditor
 
         private void PreviewListView_VirtualItemsSelectionRangeChanged(object sender, ListViewVirtualItemsSelectionRangeChangedEventArgs e)
         {
-            // Keep track of what image/s are selected.
+            // 跟踪所选的图像.
             ListView.SelectedIndexCollection _col = PreviewListView.SelectedIndices;
 
             if (_col.Count > 1)
             {
                 toolStripStatusLabel.ForeColor = Color.Red;
-                toolStripStatusLabel.Text = "Multiple images selected.";
+                toolStripStatusLabel.Text = "选择了多个图像.";
             }
         }
 

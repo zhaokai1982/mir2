@@ -60,15 +60,22 @@ namespace Launcher
             }
         }
 
-        public void Start()
+        public void Start() //自动更新检测，修复检测不到更新连接不报错
         {
             try
             {
+                OldList = new List<FileInformation>();
                 DownloadList = new Queue<FileInformation>();
 
-                GetOldFileList();
+                byte[] data = Download(Settings.P_PatchFileName);
 
-                if (OldList.Count == 0)
+                if (data != null)
+                {
+                    using (MemoryStream stream = new MemoryStream(data))
+                    using (BinaryReader reader = new BinaryReader(stream))
+                        ParseOld(reader);
+                }
+                else
                 {
                     MessageBox.Show(GameLanguage.PatchErr);
                     Completed = true;
@@ -89,7 +96,7 @@ namespace Launcher
             }
             catch (EndOfStreamException ex)
             {
-                MessageBox.Show("End of stream found. Host is likely using a pre version 1.1.0.0 patch system");
+                MessageBox.Show("找到问题。主机可能使用1.1.0.0版之前的补丁系统");
                 Completed = true;
                 SaveError(ex.ToString());
             }
@@ -205,7 +212,7 @@ namespace Launcher
                     }
                     finally
                     {
-                        //Might cause an infinite loop if it can never gain access
+                        //如果无法访问，可能会导致无限循环
                         Restart = true;
                     }
                 }
@@ -300,7 +307,7 @@ namespace Launcher
             return data;
         }
 
-        //Seems to want to cache the PList when using WebClient, so causes issues. No longer used.
+        //在使用WebClient时似乎希望缓存PList，因此会导致问题。不再使用.
         public byte[] DownloadOld(string fileName)
         {
             fileName = fileName.Replace(@"\", "/");
@@ -542,7 +549,7 @@ namespace Launcher
                 {
                     
                     ActionLabel.Text = "";
-                    CurrentFile_label.Text = "Up to date.";
+                    CurrentFile_label.Text = "更新文件.";
                     SpeedLabel.Text = "";
                     ProgressCurrent_pb.Width = 550;
                     TotalProg_pb.Width = 550;
@@ -553,13 +560,13 @@ namespace Launcher
                     TotalPercent_label.Text = "100%";
                     InterfaceTimer.Enabled = false;
                     Launch_pb.Enabled = true;
-                    if (ErrorFound) MessageBox.Show("One or more files failed to download, check Error.txt for details.", "Failed to Download.");
+                    if (ErrorFound) MessageBox.Show("一个或多个文件下载失败，请检查错误。详细信息请参阅。", "下载失败.");
                     ErrorFound = false;
 
                     if (CleanFiles)
                     {
                         CleanFiles = false;
-                        MessageBox.Show("Your files have been cleaned up.", "Clean Files");
+                        MessageBox.Show("你的文件已被清理.", "清除文件");
                     }
 
                     if (Restart)
@@ -619,7 +626,7 @@ namespace Launcher
 
         private void Credit_label_Click(object sender, EventArgs e)
         {
-            if (Credit_label.Text == "Powered by Crystal M2") Credit_label.Text = "Designed by Breezer";
+            if (Credit_label.Text == "Powered by Crystal M2") Credit_label.Text = "Designed by ZhaoKai";
             else Credit_label.Text = "Powered by Crystal M2";
         }
 

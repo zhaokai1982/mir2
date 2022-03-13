@@ -279,7 +279,7 @@ namespace Server
         
         private void DayBanButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to ban the selected Accounts?", "Ban Selected.", MessageBoxButtons.YesNoCancel) != DialogResult.Yes) return;
+            if (MessageBox.Show("是否确实要禁止所选帐户?", "确认菜单.", MessageBoxButtons.YesNoCancel) != DialogResult.Yes) return;
 
             DateTime expiry = SMain.Envir.Now.AddDays(1);
 
@@ -298,7 +298,7 @@ namespace Server
 
         private void WeekBanButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to ban the selected Accounts?", "Ban Selected.", MessageBoxButtons.YesNoCancel) != DialogResult.Yes) return;
+            if (MessageBox.Show("是否确实要禁止所选帐户?", "确认菜单.", MessageBoxButtons.YesNoCancel) != DialogResult.Yes) return;
 
             DateTime expiry = SMain.Envir.Now.AddDays(7);
 
@@ -317,7 +317,7 @@ namespace Server
 
         private void PermBanButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to ban the selected Accounts?", "Ban Selected.", MessageBoxButtons.YesNoCancel) != DialogResult.Yes) return;
+            if (MessageBox.Show("是否确实要禁止所选帐户?", "确认菜单.", MessageBoxButtons.YesNoCancel) != DialogResult.Yes) return;
 
 
             AccountInfoListView.BeginUpdate();
@@ -416,12 +416,12 @@ namespace Server
         {
             if (SMain.Envir.Running)
             {
-                MessageBox.Show("Cannot wipe characters whilst the server is running", "Notice",
+                MessageBox.Show("服务器运行时无法删除角色", "注意！",
                 MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
 
-            if (MessageBox.Show("Are you sure you want to wipe all characters from the database?", "Notice",
+            if (MessageBox.Show("是否确实要删除数据库中的所有字符?", "注意！",
                  MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
             {
                 for (int i = 0; i < SMain.Envir.AccountList.Count; i++)
@@ -434,7 +434,7 @@ namespace Server
                 SMain.Envir.Auctions.Clear();
                 SMain.Envir.GuildList.Clear();
 
-                MessageBox.Show("All characters and associated data has been cleared", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("所有字符和相关数据都已清除", "注意！", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
             }
         }
@@ -452,7 +452,7 @@ namespace Server
                     _selectedAccountInfos[i].RequirePasswordChange = true;
                     PasswordChangeCheckBox.CheckState = CheckState.Checked;
                     Update(AccountInfoListView.SelectedItems[i], _selectedAccountInfos[i]);
-                    MessageBox.Show("Password Changed");
+                    MessageBox.Show("密码更改");
                 }
 
                 AutoResize();

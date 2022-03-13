@@ -50,8 +50,8 @@ public class RankCharacterInfo
     public MirClass Class;
     public int level;
 
-    public long Experience;//clients shouldnt care about this only server
-    public object info;//again only keep this on server!
+    public long Experience;//客户端不应该只关心这台服务器
+    public object info;//再一次，只在服务器上保存这个！
 
     public RankCharacterInfo()
     {

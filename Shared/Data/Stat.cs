@@ -121,7 +121,7 @@ public enum Stat : byte
     PoisonResist = 31,
     HealthRecovery = 32,
     SpellRecovery = 33,
-    PoisonRecovery = 34, //TODO - Should this be in seconds or milliseconds??
+    PoisonRecovery = 34, //待了解的-这应该是几秒钟还是几毫秒??
     CriticalRate = 35,
     CriticalDamage = 36,
 

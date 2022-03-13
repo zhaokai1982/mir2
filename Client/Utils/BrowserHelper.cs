@@ -78,12 +78,12 @@ namespace Client.Utils
                             };
                             Process.Start(processStartInfo);
                         }
-                        else
+                        else     //检测IE不存在提供提示，并提供下载地址，现在问题万一检测时，客户系统不在C盘咋搞，C++有检测系统命令，一会找找。
                         {
-                            if (MessageBox.Show("Internet Explorer is not installed in the system. Do you want to download and install it?", null, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                            if (MessageBox.Show("系统中未安装Internet Explorer.你想下载并安装它吗?", null, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                OpenDefaultBrowser("http://windows.microsoft.com/zh-cn/internet-explorer/download-ie");
-                            }
+                                OpenDefaultBrowser("http://windows.microsoft.com/zh-cn/internet-explorer/download-ie"); //小凯郁闷啦，微软总变更地址，这个为难我了
+                            }                                                                                          //更郁闷的，疫情啥时候过去解封啊！！！           
                         }
                     }
                 }

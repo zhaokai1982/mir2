@@ -147,9 +147,9 @@ namespace Client
         {
             Reader.Write("Guide", "01", "RequireAlt,RequireShift,RequireTilde,RequireCtrl");
             Reader.Write("Guide", "02", "have 3 options: 0/1/2");
-            Reader.Write("Guide", "03", "0 < you cannot have this key pressed to use the function");
-            Reader.Write("Guide", "04", "1 < you have to have this key pressed to use this function");
-            Reader.Write("Guide", "05", "2 < it doesnt matter if you press this key to use this function");
+            Reader.Write("Guide", "03", "0 < 不能按此键使用该功能");
+            Reader.Write("Guide", "04", "1 < 你必须按下这个键才能使用这个功能");
+            Reader.Write("Guide", "05", "2 < 按这个键使用这个功能没关系");
             Reader.Write("Guide", "06", "by default just use 2, unless you have 2 functions on the same key");
             Reader.Write("Guide", "07", "example: change attack mode (ctrl+h) and help (h)");
             Reader.Write("Guide", "08", "if you set either of those to requireshift 2, then they wil both work at the same time or not work");

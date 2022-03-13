@@ -39,7 +39,7 @@ namespace Server.MirObjects
                 return script;
             }
 
-            return new NPCScript(loadedObjectID, fileName, type);
+            return new NPCScript(loadedObjectID, fileName, type);   //NPC 文本识别检测命令行
         }
 
         public readonly int ScriptID;
@@ -570,6 +570,7 @@ namespace Server.MirObjects
                     while (match.Success)
                     {
                         string argu = match.Groups[1].Captures[0].Value;
+                        argu = argu.Split('/')[0];
 
                         currentButtons.Add(string.Format("[{0}]", argu));
                         match = match.NextMatch();
@@ -669,7 +670,7 @@ namespace Server.MirObjects
 
                     if (goods == null || Goods.Contains(goods))
                     {
-                        MessageQueue.Enqueue(string.Format("Could not find Item: {0}, File: {1}", lines[i], FileName));
+                        MessageQueue.Enqueue(string.Format("启动错误，找不到商铺物品: {0}, File: {1}", lines[i], FileName));
                         continue;
                     }
 
@@ -839,7 +840,7 @@ namespace Server.MirObjects
 
                     foreach (NPCSegment segment in player.NPCPage.SegmentList)
                     {
-                        if (!player.NPCSuccess.TryGetValue(segment, out bool result)) break; //no result for segment ?
+                        if (!player.NPCSuccess.TryGetValue(segment, out bool result)) break; //段没有结果 ?
 
                         if ((result ? segment.Buttons : segment.ElseButtons).Any(s => s.ToUpper() == key))
                         {
@@ -849,7 +850,7 @@ namespace Server.MirObjects
 
                     if (!found)
                     {
-                        MessageQueue.Enqueue(string.Format("Player: {0} was prevented access to NPC key: '{1}' ", player.Name, key));
+                        MessageQueue.Enqueue(string.Format("玩家: {0} 无法访问NPC密钥: '{1}' ", player.Name, key));
                         return;
                     }
                 }
@@ -1034,7 +1035,7 @@ namespace Server.MirObjects
                 case GuildCreateKey:
                     if (player.Info.Level < Settings.Guild_RequiredLevel)
                     {
-                        player.ReceiveChat(String.Format("You have to be at least level {0} to create a guild.", Settings.Guild_RequiredLevel), ChatType.System);
+                        player.ReceiveChat(String.Format("您的等级不够 {0} 创建公会.", Settings.Guild_RequiredLevel), ChatType.System);
                     }
                     else if (player.MyGuild == null)
                     {
@@ -1049,7 +1050,7 @@ namespace Server.MirObjects
                     {
                         if (player.MyGuildRank != player.MyGuild.Ranks[0])
                         {
-                            player.ReceiveChat("You must be the leader to request a war.", ChatType.System);
+                            player.ReceiveChat("你必须是要求开战的领袖.", ChatType.System);
                             return;
                         }
                         player.Enqueue(new S.GuildRequestWar());
@@ -1184,7 +1185,7 @@ namespace Server.MirObjects
 
             if (isUsed)
             {
-                callingNPC.UsedGoods.Remove(goods); //If used or buyback will destroy whole stack instead of reducing to remaining quantity
+                callingNPC.UsedGoods.Remove(goods); //如果使用或回购将破坏整个堆栈，而不是减少到剩余数量
 
                 List<UserItem> newGoodsList = new List<UserItem>();
                 newGoodsList.AddRange(Goods);
@@ -1203,13 +1204,13 @@ namespace Server.MirObjects
 
             if (isBuyBack)
             {
-                callingNPC.BuyBack[player.Name].Remove(goods); //If used or buyback will destroy whole stack instead of reducing to remaining quantity
+                callingNPC.BuyBack[player.Name].Remove(goods); //如果使用或回购将破坏整个堆栈，而不是减少到剩余数量
                 player.Enqueue(new S.NPCGoods { List = callingNPC.BuyBack[player.Name], Rate = PriceRate(player), HideAddedStats = false });
             }
         }
         public void Sell(PlayerObject player, UserItem item)
         {
-            /* Handle Item Sale */
+            /* 处理商品销售 */
         }
         public void Craft(PlayerObject player, ulong index, ushort count, int[] slots)
         {
@@ -1343,7 +1344,7 @@ namespace Server.MirObjects
 
             List<int> usedSlots2 = new List<int>();
 
-            //Use Tool Durability
+            //使用工具的耐久性
             foreach (var tool in recipe.Tools)
             {
                 for (int i = 0; i < slots.Length; i++)

@@ -41,9 +41,9 @@ namespace AutoPatcherAdmin
 
         private void CompleteDownload()
         {
-            FileLabel.Text = "Complete...";
-            SpeedLabel.Text = "Complete...";
-            ActionLabel.Text = "Complete...";
+            FileLabel.Text = "完成...";
+            SpeedLabel.Text = "完成...";
+            ActionLabel.Text = "完成...";
 
             progressBar1.Value = 100;
             progressBar2.Value = 100;
@@ -55,9 +55,9 @@ namespace AutoPatcherAdmin
 
         private void CompleteUpload()
         {
-            FileLabel.Text = "Complete...";
-            SpeedLabel.Text = "Complete...";
-            ActionLabel.Text = "Complete...";
+            FileLabel.Text = "完成...";
+            SpeedLabel.Text = "完成...";
+            ActionLabel.Text = "完成...";
 
             progressBar1.Value = 100;
             progressBar2.Value = 100;
@@ -187,7 +187,7 @@ namespace AutoPatcherAdmin
 
                     if (old.Compressed == old.Length)
                     {
-                        //exists, but not compressed, lets rename it
+                        //存在，但未压缩，我们让它重命名它
 
                         var compressedFilename = OldList[i].FileName + ".gz";
                         var compressedFilePath = Path.Combine(rootPath, compressedFilename).Replace(@"\", "/");
@@ -202,7 +202,7 @@ namespace AutoPatcherAdmin
                     }
                     else
                     {
-                        //exists, but its compressed and ends with .gz, so its correct
+                        //存在，但它被压缩并以结束。gz，所以这是正确的
                     }
                 }
                 catch
@@ -437,7 +437,7 @@ namespace AutoPatcherAdmin
                 FileLabel.Text = e.FileName.Replace(rootPath, "");
                 SpeedLabel.Text = ((double)e.CPS / 1024).ToString("0.##") + " KB/s";
 
-                ActionLabel.Text = "Downloading... Files";
+                ActionLabel.Text = "正在下载... 文件";
             };
 
             session.FileTransferred += (o, e) =>
@@ -535,7 +535,7 @@ namespace AutoPatcherAdmin
 
                     if (info.Compressed == 0)
                     {
-                        //We've uploaded a new file which is unknown to the existing PList (or no PList available). Assume this file was uploaded uncompressed and set to file length.
+                        //我们上传了一个新文件，该文件对现有的PList未知（或者没有可用的PList）。假设此文件未经压缩上传并设置为文件长度.
                         info.Compressed = info.Length;
                     }
                 }
@@ -567,7 +567,7 @@ namespace AutoPatcherAdmin
 
                 GetOldFileList();
 
-                ActionLabel.Text = "Checking Files...";
+                ActionLabel.Text = "检查文件...";
                 Refresh();
 
                 GetNewFileList();
@@ -600,7 +600,7 @@ namespace AutoPatcherAdmin
             {
                 ProcessButton.Enabled = true;
                 MessageBox.Show(ex.ToString());
-                ActionLabel.Text = "Error...";
+                ActionLabel.Text = "错误...";
             }
         }
 
@@ -639,7 +639,7 @@ namespace AutoPatcherAdmin
             {
                 btnFixGZ.Enabled = true;
                 MessageBox.Show(ex.ToString(), "Error");
-                ActionLabel.Text = "Error...";
+                ActionLabel.Text = "错误...";
             }
         }
 
@@ -663,7 +663,7 @@ namespace AutoPatcherAdmin
             {
                 DownloadExistingButton.Enabled = true;
                 MessageBox.Show(ex.ToString(), "Error");
-                ActionLabel.Text = "Error...";
+                ActionLabel.Text = "错误...";
             }
         }
 

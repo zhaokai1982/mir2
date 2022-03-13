@@ -8,7 +8,7 @@ namespace Client
     class Settings
     {
         public const long CleanDelay = 600000;
-        public static int ScreenWidth = 1024, ScreenHeight = 768;
+        public static int ScreenWidth = 1280, ScreenHeight = 768;
         private static InIReader Reader = new InIReader(@".\Mir2Config.ini");
         private static InIReader QuestTrackingReader = new InIReader(Path.Combine(UserDataPath, @".\QuestTracking.ini"));
 
@@ -68,19 +68,19 @@ namespace Client
         public static bool LogChat = true;
         public static int RemainingErrorLogs = 100;
 
-        //Graphics
-        public static bool FullScreen = true, Borderless = true, TopMost = true, MouseClip = false;
-        public static string FontName = "Tahoma"; //"MS Sans Serif"
+        //Graphics              //全屏= true，        边框= true，  最顶端= true，   鼠标点击= false   
+        public static bool FullScreen = false, Borderless = false, TopMost = false, MouseClip = false;  
+        public static string FontName = "Tahoma"; //"字体"
         public static float FontSize = 8F;
         public static bool UseMouseCursors = true;
 
-        public static bool FPSCap = true;
+        public static bool FPSCap = true;  //FPS信息显示
         public static int MaxFPS = 100;
-        public static int Resolution = 1024;
-        public static bool DebugMode = false;
+        public static int Resolution = 1280; //默认允许分辨率 1024
+        public static bool DebugMode = false;  //调试模式；除错模式；侦错模式false
 
         //Network
-        public static bool UseConfig = false;
+        public static bool UseConfig = true; //设置为 true 客户端支持IP指定，设置为 false 则不生产IP字段默认127.0.0.1
         public static string IPAddress = "127.0.0.1";
         public static int Port = 7000;
         public const int TimeOut = 5000;
@@ -128,7 +128,7 @@ namespace Client
         public static bool
             SkillMode = false,
             SkillBar = true,
-            //SkillSet = true,
+          //SkillSet = true,//默认注释掉的
             Effect = true,
             LevelEffect = true,
             DropView = true,
@@ -178,7 +178,7 @@ namespace Client
         public static string P_Login = string.Empty;
         public static string P_Password = string.Empty;
         public static string P_ServerName = string.Empty;
-        public static string P_BrowserAddress = "https://launcher.mironline.co.uk/web/";
+        public static string P_BrowserAddress = "https://baidu.com";
         public static string P_Client = Application.StartupPath + "\\";
         public static bool P_AutoStart = false;
 
@@ -279,7 +279,7 @@ namespace Client
             if (P_Host.StartsWith("www.", StringComparison.OrdinalIgnoreCase)) P_Host = P_Host.Insert(0, "http://");
             if (P_BrowserAddress.StartsWith("www.", StringComparison.OrdinalIgnoreCase)) P_BrowserAddress = P_BrowserAddress.Insert(0, "http://");
 
-            //Temp check to update everyones address
+            //临时检查以更新每个人的地址
             if (P_Host.ToLower() == "http://mirfiles.co.uk/mir2/cmir/patch/")
             {
                 P_Host = "http://mirfiles.com/mir2/cmir/patch/";

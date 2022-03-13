@@ -387,7 +387,7 @@ namespace Server.Database
                     if (columns.Length < 2)
                     {
                         fileError = true;
-                        MessageBox.Show("No columns to import.");
+                        MessageBox.Show("没有要导入的列.");
                     }
 
                     if (!fileError)
@@ -410,7 +410,7 @@ namespace Server.Database
                             if (cells.Length != columns.Length)
                             {
                                 fileError = true;
-                                MessageBox.Show($"Row {i} column count does not match the headers column count.");
+                                MessageBox.Show($"行 {i} 列计数与标题列计数不匹配.");
                                 break;
                             }
 
@@ -441,7 +441,7 @@ namespace Server.Database
                                     if (dataColumn == null)
                                     {
                                         fileError = true;
-                                        MessageBox.Show($"Column {column} was not found.");
+                                        MessageBox.Show($"列 {column} 没有找到.");
                                         break;
                                     }
 
@@ -458,7 +458,7 @@ namespace Server.Database
                             catch (Exception ex)
                             {
                                 fileError = true;
-                                MessageBox.Show($"Error when importing item {cells[0]}. {ex.Message}");
+                                MessageBox.Show($"导入项目时出错 {cells[0]}. {ex.Message}");
                                 continue;
                             }
 
@@ -474,13 +474,13 @@ namespace Server.Database
 
                         if (!fileError)
                         {
-                            MessageBox.Show($"{rowsEdited} monsters have been imported.");
+                            MessageBox.Show($"{rowsEdited} 怪物数据导入完毕.");
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No rows to import.");
+                    MessageBox.Show("没有要导入的行.");
                 }
             }
         }
@@ -491,7 +491,7 @@ namespace Server.Database
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "CSV (*.csv)|*.csv";
-                sfd.FileName = "MonsterInfo Output.csv";
+                sfd.FileName = "怪物输出文件.csv";
                 bool fileError = false;
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -504,7 +504,7 @@ namespace Server.Database
                         catch (IOException ex)
                         {
                             fileError = true;
-                            MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
+                            MessageBox.Show("无法将数据写入磁盘." + ex.Message);
                         }
                     }
                     if (!fileError)
@@ -539,18 +539,18 @@ namespace Server.Database
                             }
 
                             File.WriteAllLines(sfd.FileName, outputCsv, Encoding.UTF8);
-                            MessageBox.Show("Data Exported Successfully.", "Info");
+                            MessageBox.Show("数据导出成功.", "消息");
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Error :" + ex.Message);
+                            MessageBox.Show("错误 :" + ex.Message);
                         }
                     }
                 }
             }
             else
             {
-                MessageBox.Show("No Monsters To Export.", "Info");
+                MessageBox.Show("没有选择怪物导出.", "消息");
             }
         }
 

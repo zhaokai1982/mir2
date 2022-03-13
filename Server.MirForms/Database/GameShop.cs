@@ -320,9 +320,9 @@ namespace Server
 
         private void ResetFilter_button_Click(object sender, EventArgs e)
         {
-            ClassFilter_lb.Text = "All Classes";
-            CategoryFilter_lb.Text = "All Categories";
-            SectionFilter_lb.Text = "All Items";
+            ClassFilter_lb.Text = "全部类别";
+            CategoryFilter_lb.Text = "全部分类";
+            SectionFilter_lb.Text = "全部物品";
             UpdateGameShopList();
 
         }
@@ -331,12 +331,12 @@ namespace Server
         {
             if (SMain.Envir.Running)
             {
-                if (MessageBox.Show("Reseting purchase logs cannot be reverted and will set stock levels back to defaults, This will take effect instantly.", "Remove Logs?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+                if (MessageBox.Show("重置采购日志无法恢复，并将库存水平设置回默认值，这将立即生效.", "删除日志?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
                 SMain.Envir.ClearGameshopLog();
             }
             else
             {
-                if (MessageBox.Show("Reseting purchase logs cannot be reverted and will set stock levels back to defaults, This will take effect when you start the server", "Remove Logs?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+                if (MessageBox.Show("重置采购日志无法恢复，并将库存水平设置回默认值，这将在启动服务器时生效", "删除日志?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
                 SMain.Envir.ResetGS = true;
             }
         }

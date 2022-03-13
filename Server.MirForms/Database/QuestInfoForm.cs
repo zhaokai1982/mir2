@@ -37,7 +37,7 @@ namespace Server
         {
             if (_selectedQuestInfos.Count == 0) return;
 
-            if (MessageBox.Show("Are you sure you want to remove the selected Quests?", "Remove Quests?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
+            if (MessageBox.Show("你确定要删除选定的任务吗?", "移除任务?", MessageBoxButtons.YesNo) != DialogResult.Yes) return;
 
             for (int i = 0; i < _selectedQuestInfos.Count; i++) Envir.Remove(_selectedQuestInfos[i]);
 
@@ -178,7 +178,7 @@ namespace Server
 
             if (!data.StartsWith("Quest", StringComparison.OrdinalIgnoreCase))
             {
-                MessageBox.Show("Cannot Paste, Copied data is not Quest Information.");
+                MessageBox.Show("无法粘贴，复制的数据不是任务信息.");
                 return;
             }
 
@@ -223,7 +223,7 @@ namespace Server
                     sw.WriteLine(Quests[j].ToText());
                 }
             }
-            MessageBox.Show("Quest Export complete");
+            MessageBox.Show("任务导出完成");
         }
 
 
@@ -251,7 +251,7 @@ namespace Server
                 QuestInfo.FromText(m);
 
             UpdateInterface();
-            MessageBox.Show("Quest Import complete");
+            MessageBox.Show("任务导入完成");
         }
 
         private void QNameTextBox_TextChanged(object sender, EventArgs e)

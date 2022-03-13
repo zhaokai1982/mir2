@@ -700,7 +700,7 @@ namespace ClientPackets
             writer.Write((byte)Spell);
         }
     }
-    public sealed class RangeAttack : Packet //ArcherTest
+    public sealed class RangeAttack : Packet //射箭测试
     {
         public override short Index { get { return (short)ClientPacketIds.RangeAttack; } }
 

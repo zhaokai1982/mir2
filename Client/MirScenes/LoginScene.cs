@@ -86,32 +86,32 @@ namespace Client.MirScenes
                 Location = new Point(Settings.ScreenWidth - 116, 10),
                 Visible = Settings.UseTestConfig
             };
+            ///禁用服务器模式字段开启测试--------------------------------
+            ViolenceLabel = new MirImageControl
+            {
+                Index = 89,
+                Library = Libraries.Prguse,
+                Parent = this,
+                Location = new Point(471, 10)
+            };
 
-            //ViolenceLabel = new MirImageControl
-            //{
-            //    Index = 89,
-            //    Library = Libraries.Prguse,
-            //    Parent = this,
-            //    Location = new Point(471, 10)
-            //};
+            MinorLabel = new MirImageControl
+            {
+                Index = 87,
+                Library = Libraries.Prguse,
+                Parent = this,
+                Location = new Point(578, 10)
+            };
 
-            //MinorLabel = new MirImageControl
-            //{
-            //    Index = 87,
-            //    Library = Libraries.Prguse,
-            //    Parent = this,
-            //    Location = new Point(578, 10)
-            //};
-
-            //YouthLabel = new MirImageControl
-            //{
-            //    Index = 88,
-            //    Library = Libraries.Prguse,
-            //    Parent = this,
-            //    Location = new Point(684, 10)
-            //};
-
-            _connectBox = new MirMessageBox("Attempting to connect to the server.", MirMessageBoxButtons.Cancel);
+            YouthLabel = new MirImageControl
+            {
+                Index = 88,
+                Library = Libraries.Prguse,
+                Parent = this,
+                Location = new Point(684, 10)
+            };
+            ///禁用字段结尾---------------------
+            _connectBox = new MirMessageBox("正在尝试连接到服务器.", MirMessageBoxButtons.Cancel);
             _connectBox.CancelButton.Click += (o, e) => Program.Form.Close();
             Shown += (sender, args) =>
                 {
@@ -162,7 +162,7 @@ namespace Client.MirScenes
 
         private  void SendVersion()
         {
-            _connectBox.Label.Text = "Sending Client Version.";
+            _connectBox.Label.Text = "正在发送客户端版本.";
 
             C.ClientVersion p = new C.ClientVersion();
             try
@@ -185,7 +185,7 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Wrong version, please update your game.\nGame will now Close", true);
+                    MirMessageBox.Show("版本错误，请更新游戏.\n游戏结束", true);
 
                     Network.Disconnect();
                     break;
@@ -211,40 +211,40 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Account creation is currently disabled.");
+                    MirMessageBox.Show("当前已禁用帐户创建.");
                     _account.Dispose();
                     break;
                 case 1:
-                    MirMessageBox.Show("Your AccountID is not acceptable.");
+                    MirMessageBox.Show("您的帐户ID不可接受.");
                     _account.AccountIDTextBox.SetFocus();
                     break;
                 case 2:
-                    MirMessageBox.Show("Your Password is not acceptable.");
+                    MirMessageBox.Show("您的密码不可接受.");
                     _account.Password1TextBox.SetFocus();
                     break;
                 case 3:
-                    MirMessageBox.Show("Your E-Mail Address is not acceptable.");
+                    MirMessageBox.Show("您的电子邮件地址不可接受.");
                     _account.EMailTextBox.SetFocus();
                     break;
                 case 4:
-                    MirMessageBox.Show("Your User Name is not acceptable.");
+                    MirMessageBox.Show("您的用户名不可接受.");
                     _account.UserNameTextBox.SetFocus();
                     break;
                 case 5:
-                    MirMessageBox.Show("Your Secret Question is not acceptable.");
+                    MirMessageBox.Show("你的密保问题不可用请前些其他问题.");
                     _account.QuestionTextBox.SetFocus();
                     break;
                 case 6:
-                    MirMessageBox.Show("Your Secret Answer is not acceptable.");
+                    MirMessageBox.Show("你的密保答案不可用请填写其他答案.");
                     _account.AnswerTextBox.SetFocus();
                     break;
                 case 7:
-                    MirMessageBox.Show("An Account with this ID already exists.");
+                    MirMessageBox.Show("具有此ID的帐户已存在.");
                     _account.AccountIDTextBox.Text = string.Empty;
                     _account.AccountIDTextBox.SetFocus();
                     break;
                 case 8:
-                    MirMessageBox.Show("Your account was created successfully.");
+                    MirMessageBox.Show("您的帐户已成功创建.");
                     _account.Dispose();
                     break;
             }
@@ -256,19 +256,19 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Password Changing is currently disabled.");
+                    MirMessageBox.Show("密码更改当前处于禁用状态.");
                     _password.Dispose();
                     break;
                 case 1:
-                    MirMessageBox.Show("Your AccountID is not acceptable.");
+                    MirMessageBox.Show("您的帐户ID不可接受.");
                     _password.AccountIDTextBox.SetFocus();
                     break;
                 case 2:
-                    MirMessageBox.Show("The current Password is not acceptable.");
+                    MirMessageBox.Show("当前密码不可接受.");
                     _password.CurrentPasswordTextBox.SetFocus();
                     break;
                 case 3:
-                    MirMessageBox.Show("Your new Password is not acceptable.");
+                    MirMessageBox.Show("您的新密码不可接受.");
                     _password.NewPassword1TextBox.SetFocus();
                     break;
                 case 4:
@@ -281,7 +281,7 @@ namespace Client.MirScenes
                     _password.CurrentPasswordTextBox.Text = string.Empty;
                     break;
                 case 6:
-                    MirMessageBox.Show("Your password was changed successfully.");
+                    MirMessageBox.Show("您的密码已成功更改.");
                     _password.Dispose();
                     break;
             }
@@ -291,7 +291,7 @@ namespace Client.MirScenes
             _password.Dispose();
 
             TimeSpan d = p.ExpiryDate - CMain.Now;
-            MirMessageBox.Show(string.Format("This account is banned.\n\nReason: {0}\nExpiryDate: {1}\nDuration: {2:#,##0} Hours, {3} Minutes, {4} Seconds", p.Reason,
+            MirMessageBox.Show(string.Format("这个帐号是被禁止的.\n\n原因: {0}\n到期日：: {1}\n持续时间：: {2:#,##0} 小时, {3} 分, {4} 秒", p.Reason,
                                              p.ExpiryDate, Math.Floor(d.TotalHours), d.Minutes, d.Seconds ));
         }
         private void Login(S.Login p)
@@ -300,15 +300,15 @@ namespace Client.MirScenes
             switch (p.Result)
             {
                 case 0:
-                    MirMessageBox.Show("Logging in is currently disabled.");
+                    MirMessageBox.Show("当前已禁用登录.");
                     _login.Clear();
                     break;
                 case 1:
-                    MirMessageBox.Show("Your AccountID is not acceptable.");
+                    MirMessageBox.Show("您的帐户ID不可接受.");
                     _login.AccountIDTextBox.SetFocus();
                     break;
                 case 2:
-                    MirMessageBox.Show("Your Password is not acceptable.");
+                    MirMessageBox.Show("您的密码不可接受.");
                     _login.PasswordTextBox.SetFocus();
                     break;
                 case 3:
@@ -321,7 +321,7 @@ namespace Client.MirScenes
                     _login.PasswordTextBox.SetFocus();
                     break;
                 case 5:
-                    MirMessageBox.Show("The account's password must be changed before logging in.");                    
+                    MirMessageBox.Show("登录前必须更改帐户密码.");                    
                     OpenPasswordChangeDialog(_login.AccountIDTextBox.Text, _login.PasswordTextBox.Text);
                     _login.PasswordTextBox.Text = string.Empty;
                     break;
@@ -332,7 +332,7 @@ namespace Client.MirScenes
             _login.OKButton.Enabled = true;
 
             TimeSpan d = p.ExpiryDate - CMain.Now;
-            MirMessageBox.Show(string.Format("This account is banned.\n\nReason: {0}\nExpiryDate: {1}\nDuration: {2:#,##0} Hours, {3} Minutes, {4} Seconds", p.Reason,
+            MirMessageBox.Show(string.Format("这个帐号是被禁止的.\n\n原因: {0}\n到期日：: {1}\n持续时间: {2:#,##0} 小时, {3} 分, {4} 秒", p.Reason,
                                              p.ExpiryDate, Math.Floor(d.TotalHours), d.Minutes, d.Seconds));
         }
         private void Login(S.LoginSuccess p)
@@ -359,14 +359,14 @@ namespace Client.MirScenes
 
             public LoginDialog()
             {
-                Index = 1084;
+                Index = 1084;    //读取Prguse登录对话框图
                 Library = Libraries.Prguse;
                 Location = new Point((Settings.ScreenWidth - Size.Width)/2, (Settings.ScreenHeight - Size.Height)/2);
                 PixelDetect = false;
                 Size = new Size(328, 220);
 
-                TitleLabel = new MirImageControl
-                    {
+                TitleLabel = new MirImageControl   //读取Title登录对话框按钮
+                {
                         Index = 30,
                         Library = Libraries.Title,
                         Parent = this,
@@ -473,7 +473,7 @@ namespace Client.MirScenes
             private void AccountIDTextBox_TextChanged(object sender, EventArgs e)
             {
                 Regex reg =
-                    new Regex(@"^[A-Za-z0-9]{" + Globals.MinAccountIDLength + "," + Globals.MaxAccountIDLength + "}$");
+                    new Regex(@"^[A-Za-z0-9-\u0391-\uFFE5]{" + Globals.MinAccountIDLength + "," + Globals.MaxAccountIDLength + "}$");   //支持创建中文账户，如存在问题请QQ.271113949
 
                 if (string.IsNullOrEmpty(AccountIDTextBox.Text) || !reg.IsMatch(AccountIDTextBox.TextBox.Text))
                 {
@@ -580,7 +580,7 @@ namespace Client.MirScenes
             #endregion
         }
 
-        public sealed class InputKeyDialog : MirImageControl
+        public sealed class InputKeyDialog : MirImageControl   //小键盘界面
         {
             public readonly MirButton KeyEscButton, KeyDelButton, KeyRandButton, KeyEnterButton;
 
@@ -798,7 +798,7 @@ namespace Client.MirScenes
                          _answerValid = true;
 
 
-            public NewAccountDialog()
+            public NewAccountDialog()    //账号注册对话框开始  QQ.271113949
             {
                 Index = 63;
                 Library = Libraries.Prguse;
@@ -952,8 +952,8 @@ namespace Client.MirScenes
 
 
             private void AccountIDTextBox_TextChanged(object sender, EventArgs e)
-            {
-                Regex reg = new Regex(@"^[A-Za-z0-9]{" + Globals.MinAccountIDLength + "," + Globals.MaxAccountIDLength + "}$");
+            {                               //\u0391-\uFFE5实现中文名称和注册
+                Regex reg = new Regex(@"^[A-Za-z0-9-\u0391-\uFFE5]{" + Globals.MinAccountIDLength + "," + Globals.MaxAccountIDLength + "}$");  //这个很主要中文支持账号 QQ.271113949
 
                 if (string.IsNullOrEmpty(AccountIDTextBox.Text) || !reg.IsMatch(AccountIDTextBox.Text))
                 {
@@ -968,7 +968,7 @@ namespace Client.MirScenes
                 RefreshConfirmButton();
             }
             private void Password1TextBox_TextChanged(object sender, EventArgs e)
-            {
+            {                                   //密码区，不需要中文
                 Regex reg = new Regex(@"^[A-Za-z0-9]{" + Globals.MinPasswordLength + "," + Globals.MaxPasswordLength + "}$");
 
                 if (string.IsNullOrEmpty(Password1TextBox.Text) || !reg.IsMatch(Password1TextBox.Text))
@@ -1101,45 +1101,45 @@ namespace Client.MirScenes
             private void AccountIDTextBox_GotFocus(object sender, EventArgs e)
             {
                 Description.Visible = true;
-                Description.Text = " Description: Account ID.\n Accepted characters: a-z A-Z 0-9.\n Length: between " +
+                Description.Text = " 说明：注册帐户ID.\n 使用以下组合: a-z A-Z 0-9.\n 长度：介于 " +
                                    Globals.MinAccountIDLength + " and " + Globals.MaxAccountIDLength + " characters.";
             }
             private void PasswordTextBox_GotFocus(object sender, EventArgs e)
             {
                 Description.Visible = true;
-                Description.Text = " Description: Password.\n Accepted characters: a-z A-Z 0-9.\n Length: between " +
+                Description.Text = " 说明：设置密码.\n 只能支持以下组合: a-z A-Z 0-9.\n 长度：介于 " +
                                    Globals.MinPasswordLength + " and " + Globals.MaxPasswordLength + " characters.";
             }
             private void EMailTextBox_GotFocus(object sender, EventArgs e)
             {
                 Description.Visible = true;
                 Description.Text =
-                    " Description: E-Mail Address.\n Format: Example@Example.Com.\n Max Length: 50 characters.\n Optional Field.";
+                    " Description: 电子邮件地址.\n格式：XXXX@xxxx.Com.\n最大长度：50个字符.\n可选字段.";
             }
             private void UserNameTextBox_GotFocus(object sender, EventArgs e)
             {
                 Description.Visible = true;
                 Description.Text =
-                    " Description: User Name.\n Accepted characters:All.\n Length: between 0 and 20 characters.\n Optional Field.";
+                    " Description: 用户名.\n非法字符以外全部字符.\n长度：介于0到20个字符之间.\n可选字段.";
             }
             private void BirthDateTextBox_GotFocus(object sender, EventArgs e)
             {
                 Description.Visible = true;
                 Description.Text =
-                    string.Format(" Description: Birth Date.\n Format: {0}.\n Length: 10 characters.\n Optional Field.",
+                    string.Format(" 描述：出生日期.\n 格式: {0}.\n 长度: 10 角色.\n可选字段.",
                                   Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern.ToUpper());
             }
             private void QuestionTextBox_GotFocus(object sender, EventArgs e)
             {
                 Description.Visible = true;
                 Description.Text =
-                    " Description: Secret Question.\n Accepted characters: All.\n Length: between 0 and 30 characters.\n Optional Field.";
+                    " 描述：秘密问题.\n接受的字符：全部.\n长度：介于0到30个字符之间.\n可选字段.";
             }
             private void AnswerTextBox_GotFocus(object sender, EventArgs e)
             {
                 Description.Visible = true;
                 Description.Text =
-                    " Description: Secret Answer.\n Accepted characters: All.\n Length: between 0 and 30 characters.\n Optional Field.";
+                    " 描述：秘密答案.\n接受的字符：全部.\n长度：介于0到30个字符之间.\n可选字段.";
             }
 
             private void RefreshConfirmButton()
@@ -1304,7 +1304,7 @@ namespace Client.MirScenes
 
             private void AccountIDTextBox_TextChanged(object sender, EventArgs e)
             {
-                Regex reg = new Regex(@"^[A-Za-z0-9]{" + Globals.MinAccountIDLength + "," + Globals.MaxAccountIDLength + "}$");
+                Regex reg = new Regex(@"^[A-Za-z0-9-\u0391-\uFFE5]{" + Globals.MinAccountIDLength + "," + Globals.MaxAccountIDLength + "}$");  //中文支持
 
                 if (string.IsNullOrEmpty(AccountIDTextBox.Text) || !reg.IsMatch(AccountIDTextBox.Text))
                 {

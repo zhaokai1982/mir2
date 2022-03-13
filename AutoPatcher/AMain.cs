@@ -46,7 +46,7 @@ namespace AutoPatcher
             }
             else
             {
-                MessageBox.Show("Could not get Patch Information.");
+                MessageBox.Show("无法获取修补程序信息.");
                 Completed = true;
                 return;
             }
@@ -183,7 +183,7 @@ namespace AutoPatcher
                         if (e.Error != null)
                         {
                             File.AppendAllText(@".\Error.txt",
-                                   string.Format("[{0}] {1}{2}", DateTime.Now, info.FileName + " could not be downloaded. (" + e.Error.Message + ")", Environment.NewLine));
+                                   string.Format("[{0}] {1}{2}", DateTime.Now, info.FileName + " 无法下载. (" + e.Error.Message + ")", Environment.NewLine));
                             ErrorFound = true;
                         }
                         else
@@ -211,7 +211,7 @@ namespace AutoPatcher
             }
             catch
             {
-                MessageBox.Show(string.Format("Failed to download file: {0}", fileName));
+                MessageBox.Show(string.Format("下载文件失败: {0}", fileName));
             }
         }
 
@@ -287,7 +287,7 @@ namespace AutoPatcher
         private void ImageLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ImageLinkLabel.LinkVisited = true;
-            Process.Start("http://www.lomcn.org/forum/member.php?5330-DevilsKnight");
+            Process.Start("http://mir23.top");
         }
 
         private void AMain_Load(object sender, EventArgs e)
@@ -295,6 +295,11 @@ namespace AutoPatcher
             PlayButton.Enabled = false;
             _workThread = new Thread(Start) { IsBackground = true };
             _workThread.Start();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void InterfaceTimer_Tick(object sender, EventArgs e)
@@ -308,21 +313,21 @@ namespace AutoPatcher
                         Play();
                         return;
                     }
-                    ActionLabel.Text = "Completed.";
-                    SizeLabel.Text = "Completed.";
-                    FileLabel.Text = "Completed.";
-                    SpeedLabel.Text = "Completed.";
+                    ActionLabel.Text = "完成.";
+                    SizeLabel.Text = "完成.";
+                    FileLabel.Text = "完成.";
+                    SpeedLabel.Text = "完成.";
                     progressBar1.Value = 100;
                     progressBar2.Value = 100;
                     PlayButton.Enabled = true;
                     InterfaceTimer.Enabled = false;
 
-                    if (ErrorFound) MessageBox.Show("One or more files failed to download, check Error.txt for details.", "Failed to Download.");
+                    if (ErrorFound) MessageBox.Show("一个或多个文件下载失败，请检查错误。详细信息请参见.", "下载失败.");
                     ErrorFound = false;
                     return;
                 }
 
-                ActionLabel.Text = !Checked ? string.Format("Checking Files... {0}/{1}", _currentCount, _fileCount) : string.Format("Downloading... {0}/{1}", _currentCount, _fileCount);
+                ActionLabel.Text = !Checked ? string.Format("检查文件... {0}/{1}", _currentCount, _fileCount) : string.Format("正在下载... {0}/{1}", _currentCount, _fileCount);
                 SizeLabel.Text = string.Format("{0:#,##0} MB / {1:#,##0} MB", (_completedBytes + _currentBytes) / 1024 / 1024, _totalBytes / 1024 / 1024);
 
                 if (_currentFile != null)
@@ -367,7 +372,7 @@ namespace AutoPatcher
         private void SourceLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             SourceLinkLabel.LinkVisited = true;
-            Process.Start("http://www.lomcn.org/forum/member.php?141-Jamie-Hello");
+            Process.Start("http://mir23.top");
         }
 
 

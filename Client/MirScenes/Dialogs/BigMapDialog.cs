@@ -266,7 +266,7 @@ namespace Client.MirScenes.Dialogs
 
         private void MakeCoordinateLabel()
         {
-            CoordinateLabel.Text = $"[ {MouseLocation.X}, {MouseLocation.Y} ]";
+            CoordinateLabel.Text = $"[ {MouseLocation.X},{MouseLocation.Y} ]";
         }
 
         public void ShowCoordinateLabel()
@@ -405,12 +405,12 @@ namespace Client.MirScenes.Dialogs
         {
             if (SelectedNPC == null || !SelectedNPC.Info.CanTeleportTo) return;
 
-            MirMessageBox messageBox = new MirMessageBox($"Teleport to this NPC for {GameScene.TeleportToNPCCost} Gold?", MirMessageBoxButtons.YesNo);
+            MirMessageBox messageBox = new MirMessageBox($"传送到该NPC需收取您 {GameScene.TeleportToNPCCost} 金币?", MirMessageBoxButtons.YesNo);
             messageBox.YesButton.Click += (o, e) =>
             {
                 if (GameScene.Gold < GameScene.TeleportToNPCCost)
                 {
-                    MirMessageBox messageBox2 = new MirMessageBox("Not enough Gold.", MirMessageBoxButtons.OK);
+                    MirMessageBox messageBox2 = new MirMessageBox("金币不够玩啥呐？.", MirMessageBoxButtons.OK);
                     messageBox2.Show();
                     return;
                 }
@@ -568,7 +568,7 @@ namespace Client.MirScenes.Dialogs
             UserRadarDot = new MirImageControl
             {
                 Library = Libraries.Prguse2,
-                Index = 1350,
+                Index = 1353, //大地图显示自己的标志 1350蓝色 1351黄色 1352 心 1353 小人
                 Parent = this,
                 Visible = false,
                 NotControl = true
@@ -662,7 +662,7 @@ namespace Client.MirScenes.Dialogs
                     else
                         if (ob is PlayerObject)
                         colour = Color.FromArgb(255, 255, 255);
-                    else if (ob is NPCObject || ob.AI == 6)
+                    else if (ob is NPCObject || ob.AI == 16)  //小地图显示标识 大小 默认6
                         colour = Color.FromArgb(0, 255, 50);
                     else
                         colour = Color.FromArgb(255, 0, 0);

@@ -73,7 +73,7 @@ namespace LibraryViewer
             //DebugBox.Text += "Prefix: "+Prefix + "\r\n";
             Program.LoadFailed = false;
 
-            MessageBox.Show("This can take a while.\n Press 'OK' to Start.");
+            MessageBox.Show("这可能需要一段时间.\n 按“确定”开始.");
 
             
             Stopwatch sw = Stopwatch.StartNew();//Timing
@@ -106,9 +106,9 @@ namespace LibraryViewer
 
 
             if (ImageList.Images.Count < 1)
-                MessageBox.Show("No images seem to be found.\nMake sure you choose the right prefix!");
+                MessageBox.Show("似乎没有找到任何图像.\n确保选择了正确的前缀!");
             else
-                MessageBox.Show("Folder processing finally finished.\nTime Taken: " + sw.Elapsed.TotalMilliseconds + "ms");
+                MessageBox.Show("文件夹处理终于完成了.\n所用时: " + sw.Elapsed.TotalMilliseconds + "毫秒");
         }
 
         private void PreviewListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -259,7 +259,7 @@ namespace LibraryViewer
 
             }
 
-            MessageBox.Show("Image export complete.", "Image export", MessageBoxButtons.OK);
+            MessageBox.Show("图像导出完成.", "图像输出", MessageBoxButtons.OK);
         }
     }
 
