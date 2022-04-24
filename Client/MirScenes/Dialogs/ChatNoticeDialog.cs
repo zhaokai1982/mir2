@@ -34,7 +34,7 @@ namespace Client.MirScenes.Dialogs
                 DrawFormat = TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter,
                 Parent = this,
                 NotControl = true,
-                Location = new Point(0, -6),
+                Location = new Point(0, -9),
                 Size = new Size(660, 40),
                 ForeColour = Color.Yellow,
                 OutLineColour = Color.Black,
